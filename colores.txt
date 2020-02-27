@@ -1,0 +1,7 @@
+Color logo: #B560E2
+
+posible color-scheme:
+#A14DA0
+#CE7DA5
+#E2C2C6
+#B9929F
