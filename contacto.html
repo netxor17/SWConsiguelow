@@ -1,12 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Contacto</title>
+<!--link rel="stylesheet" type="text/css" href="estilo.css" /-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Contacto</title>
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    
+    <h2>Send e-mail to someone@example.com:</h2>
+
+    <form action="mailto:someone@example.com" method="post" enctype="text/plain">
+        <p>
+            <label>Name:</label>
+            <input type="text" name="name">
+        </p>
+        <p>
+            <label>E-mail:</label>
+            <input type="text" name="mail">
+        </p>
+        
+
+        <p>
+            <p>Motivo de la consulta:</p>
+            <input type="radio" name="motivo" value="evaluacion">
+            <label for="male">Evaluación</label><br>
+            
+            <input type="radio" name="motivo" value="sugerencias">
+            <label for="female">Sugerencias</label><br>
+            
+            <input type="radio"name="motivo" value="criticas">
+            <label for="other">Críticas</label>
+        </p>
+
+        <p>
+         <input type="checkbox" name="leido" value="true">
+         <label for="leido"> Marque esta casilla pra verificar que ha leído nuestros términos y condiciones del servicio</label><br><br>
+        </p>
+
+        <p>        
+            <label>Escribe aquí tu consulta:</label>
+        </p>
+
+        <textarea rows="4" cols="50">
+            
+        </textarea>
+    </form>
+
+</body>
+</html>
+
+
+
 </body>
 </html>
