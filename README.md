@@ -1,2 +1,0 @@
-# SWConsiguelow
-Proyecto asignatura SW 
