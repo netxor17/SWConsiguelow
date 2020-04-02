@@ -9,6 +9,19 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <title>Vender producto</title>
     </head>
+    <header>
+                <nav>
+                    <ul>
+                    <li><a href="index.php?">Inicio</a></li>
+                    <li><a href="detalles.html">Detalles</a></li>
+                    <li><a href="bocetos.html">Bocetos</a></li>
+                    <li><a href="planificacion.html">Planificación</a></li>
+                    <li><a href="miembros.html">Miembros</a></li>
+                    <li><a href="contacto.html">Contacto</a></li> 
+                    <a href="vender.php">Vender</a>
+                    </ul>
+                </nav>
+    </header>
     <body>
         <centre>
             <form action="anadir.php" method="POST" enctype="multipart/form-data">   <!-- formulario para rellenar los campos -->
@@ -23,6 +36,6 @@
             <input type="submit" name="enviar" value="Enviar" /></br></br>
             <input type="reset" name="Borrar" value="Borrar formulario" /></p></br>
             </form>
-        </centre>
+        </centre>   
     </body>
 </html>

@@ -37,9 +37,12 @@ VALUES ('$idVendedor','$nombreProd','$descripcion','$precio','$unidadesDisponibl
 $resultado = $conexion->query($insertar);
  if(!$resultado){
      echo 'error al subir producto';
+    echo '<li><a href="mostrarProducto.php">Mostrar productos ya existentes</a></li>';
+
  }
  else{
-     echo'archivo subido con exito';
+     echo 'archivo subido con exito';
+     echo '<li><a href="mostrarProducto.php">Mostrar producto</a></li>';
  }
 
 ?>
