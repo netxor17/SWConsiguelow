@@ -1,5 +1,5 @@
 <?php
-//include('login.php');
+    session_start();
 ?>
 
 <!DOCTYPE html>
@@ -9,19 +9,35 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <title>Vender producto</title>
     </head>
-    <header>
+   <header>
                 <nav>
                     <ul>
                     <li><a href="index.php?">Inicio</a></li>
-                    <li><a href="detalles.html">Detalles</a></li>
-                    <li><a href="bocetos.html">Bocetos</a></li>
-                    <li><a href="planificacion.html">Planificación</a></li>
-                    <li><a href="miembros.html">Miembros</a></li>
-                    <li><a href="contacto.html">Contacto</a></li> 
-                    <a href="vender.php">Vender</a>
-                    <a href="mostrarProducto.php">Mostar productos</a></ul>
-                    </ul>
-                </nav>
+                    <li><a href="detalles.php">Detalles</a></li>
+                    <li><a href="bocetos.php">Bocetos</a></li>
+                    <li><a href="planificacion.php">Planificación</a></li>
+                    <li><a href="miembros.php">Miembros</a></li>
+                    <li><a href="contacto.php">Contacto</a></li> 
+                    <li><a href="vender.php">Vender</a></li>
+                    <li><a href="mostrarProducto.php">Mostrar productos</a></li>
+                        <?php 
+                    if (isset($_SESSION['login'])) {
+                        if ($_SESSION['login']){
+                            if (isset($_SESSION['username'])){
+                                $nombre = $_SESSION['username'];
+                                echo 'Hello ' . htmlspecialchars($nombre) . '! ';
+                                echo  '<a href="logout.php">Logout</a>';
+                            }
+                        }
+                     
+                }
+                else{
+                    echo "Usuario desconocido. <a href='login.php'>Login</a>";  
+                }
+                ?>    
+                </li>
+            </ul>
+        </nav>
     </header>
     <body>
         <centre>
