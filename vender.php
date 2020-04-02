@@ -33,7 +33,7 @@
             <input type="text" REQUIRED name="talla" placeholder="Talla.." value="" /></br></br>
             <input type="text" REQUIRED name="color" placeholder="Color..." value="" /></br></br>
             <input type="text" REQUIRED name="categoria" placeholder="Categoria.." value="" /></br></br>
-            <input type="file" name="imagen" /></br></br>
+            <input type="file" REQUIRED name="imagen" /></br></br>
             <input type="submit" name="enviar" value="Enviar" /></br></br>
             <input type="reset" name="Borrar" value="Borrar formulario" /></p></br>
             </form>
