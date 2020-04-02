@@ -58,7 +58,7 @@ if (isset($_POST['username'])){
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="estilo.css" />
+        <link rel="stylesheet" type="text/css" href="style.css" />
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <title>Inicio de sesión</title>
     </head>

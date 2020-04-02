@@ -19,6 +19,7 @@
                     <li><a href="miembros.html">Miembros</a></li>
                     <li><a href="contacto.html">Contacto</a></li> 
                     <a href="vender.php">Vender</a>
+                    <a href="mostrarProducto.php">Mostar productos</a></ul>
                     </ul>
                 </nav>
     </header>
