@@ -25,7 +25,7 @@ $unidades=$_POST["unidades"];
 $talla =$_POST["talla"];
 $color =$_POST["color"];
 $categoria =$_POST["categoria"];
-//$imagen= addslashes(file_get_contents($_FILES['imagen']['tmp_name'])); //para añadir la imagen
+$imagen= addslashes(file_get_contents($_FILES['imagen']['tmp_name'])); //para añadir la imagen
 
 $agotado = false; //duda
 $reseña = ''; //duda
@@ -37,7 +37,7 @@ $unidadesDisponibles =$unidades; //sumo las unidades que voy insertando
 
 // consulta para insertar valores
 $insertar = "INSERT INTO productos (idVendedor,nombre,descripcion,precio,unidadesDisponibles,tallasDisponibles,coloresDisponibles,talla,color, categoria, agotado, reseña, numEstrellas, imagen) 
-VALUES ('1','$nombreProd','$descripcion','$precio','$unidadesDisponibles','$tallasDisponibles','$coloresDisponibles','$talla','$color','$categoria','0','ninguna','0','')";
+VALUES ('1','$nombreProd','$descripcion','$precio','$unidadesDisponibles','$tallasDisponibles','$coloresDisponibles','$talla','$color','$categoria','0','ninguna','0','$imagen')";
 
 echo $insertar;
 //ejecuta consulta
