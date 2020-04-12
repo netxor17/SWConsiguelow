@@ -12,17 +12,18 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="detalles.html">Detalles</a></li>
-                <li><a href="bocetos.html">Bocetos</a></li>
-                <li><a href="planificacion.html">Planificación</a></li>
-                <li><a href="miembros.html">Miembros</a></li>
-                <li><a href="contacto.html">Contacto</a></li>
-                <li>
-                <?php 
+            <header>
+                <nav>
+                    <ul>
+                    <li><a href="index.php?">Inicio</a></li>
+                    <li><a href="detalles.html">Detalles</a></li>
+                    <li><a href="bocetos.html">Bocetos</a></li>
+                    <li><a href="planificacion.html">Planificación</a></li>
+                    <li><a href="miembros.html">Miembros</a></li>
+                    <li><a href="contacto.html">Contacto</a></li> 
+                    <li><a href="vender.php">Vender</a></li>
+                    <li><a href="mostrarProducto.php">Mostrar productos</a></li>
+                        <?php 
                     if (isset($_SESSION['login'])) {
                         if ($_SESSION['login']){
                             if (isset($_SESSION['username'])){
@@ -43,7 +44,7 @@
     </header>
     <main>
             <h1>CONSIGUELOW</h1>
-            <?php echo 'Hello ' . htmlspecialchars($nombre) . '! ';?>
+            <?php echo 'Hello ' . htmlspecialchars($nombre) . '!';?>
             <p>Cada vez más gente compra mediante <strong>internet</strong>, debido a que hay muchísima
                 variedad de productos y es mucho mas cómodo, ya que no hay que moverse
                 de casa. Nuestro proyecto consiste en una página web estilo Ebay, en la que se

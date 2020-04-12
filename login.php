@@ -2,6 +2,7 @@
 include('funciones.inc');
 //NOTA: crear un usuario para el sitio web
 function usuario_existe($username, $passwd){
+    //$conexion = new mysqli("localhost", "usuario", "contraseña", "basedatos");
     $conexion = new mysqli("", "root","", "consiguelowdb" );
    // mysqli_select_db($conexion, );
     if (mysqli_connect_errno()){
@@ -57,7 +58,7 @@ if (isset($_POST['username'])){
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="estilo.css" />
+        <link rel="stylesheet" type="text/css" href="style.css" />
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <title>Inicio de sesión</title>
     </head>
