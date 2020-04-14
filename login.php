@@ -3,7 +3,7 @@ include('funciones.inc');
 //NOTA: crear un usuario para el sitio web
 function usuario_existe($username, $passwd){
     //$conexion = new mysqli("localhost", "usuario", "contraseña", "basedatos");
-    $conexion = new mysqli("", "root","", "consiguelowdb" );
+    $conexion = new mysqli("", "root","", "tiendaonline" );
    // mysqli_select_db($conexion, );
     if (mysqli_connect_errno()){
         echo 'Error de conexión a la BD: ' .mysqli_connect_error();
@@ -13,7 +13,7 @@ function usuario_existe($username, $passwd){
         echo '<p>Conexión con la BD realizada con éxito</p>';
     }
 
-    $query = "SELECT * FROM user WHERE username = '$username'";
+    $query = "SELECT * FROM usuario WHERE nombre = '$username'";
    // $query .= "WHERE username = $username AND password = $passwd";
     $result = $conexion->query($query) or die ($conexion->error. " en la línea ".(__LINE__-1));
     $numregs = $result->num_rows;
@@ -44,7 +44,7 @@ if (isset($_POST['username'])){
         $_SESSION['username'] = $username;
         $_SESSION['login'] = true;
 
-        header('location: '.url('index.php'));
+    //header('location: '.url('index.php'));
         exit;
     }else{  //no exite --> mensaje de error
         $mensaje = 'Identificación incorrecta. ';
