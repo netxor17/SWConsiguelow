@@ -1,15 +1,24 @@
 <?php
-    session_start();
-?>
+//include('vender.php');
+ //recibo datos introducidos y los almaceno en variables
+//$ = mysqli_query($conexion,$usuario); //$usuario es el nombre de usuario de la sesion
 
-<!DOCTYPE html>
+/*$query= "SELECT * FROM productos"; //hago un query y muestro todas las filas de la tabla 'productos'
+$resultado= $conexion ->query($query);
+while($fila=$resultado->fetch_assoc()){ //mientras se haya podido recoger una fila de la tabla 'productos' de la bd
+    */
+
+$conexion = new mysqli("localhost", "root", "", "tiendaonline");
+if($conexion->connect_error){
+	die("Conexion con base de datos fallida: " . $conexion->connect_error);
+}
+?>
 <html>
-<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="style.css">
-    <title>Mostrar tabla productos</title>
+    <title>Realizar busqueda</title>
     </head>
     <body>
         <header>
@@ -42,20 +51,17 @@
             </ul>
         </nav>
     </header>
-    <body>
-        <centre>
-            <form action="anadir.php" method="POST" enctype="multipart/form-data">   <!-- formulario para rellenar los campos -->
-            <input type="text" REQUIRED name="nombreProducto" placeholder="Nombre del producto.." value="" /></br></br>  <!-- REQUIRED significa campo obligatorio -->
-            <input type="text" REQUIRED name="descripcion" placeholder="Descripcion producto.." value="" /></br></br>
-            <input type="text" REQUIRED name="precio" placeholder="Precio producto.." value="" /></br></br>
-            <input type="text" REQUIRED name="unidades" placeholder="Unidades.." value="" /></br></br>
-            <input type="text" REQUIRED name="talla" placeholder="Talla.." value="" /></br></br>
-            <input type="text" REQUIRED name="color" placeholder="Color..." value="" /></br></br>
-            <input type="text" REQUIRED name="categoria" placeholder="Categoria.." value="" /></br></br>
-            <input type="file" name="imagen" /></br></br>
-            <input type="submit" name="enviar" value="Enviar" /></br></br>
-            <input type="reset" name="Borrar" value="Borrar formulario" /></p></br>
-            </form>
-        </centre>   
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <title>Mostrar Busqueda</title>
+    <form action="muestraBusqueda.php" method="POST" enctype="multipart/form-data">   <!-- formulario para rellenar los campos -->
+    <input type="text" name="nombreProd" placeholder="Buscar por nombre..." value="" /></br></br>
+    <input type="text" name="nombreCategoria" placeholder="Buscar por categoria..." value="" /></br></br> 
+    <input type="text" name="nombreVendedor" placeholder="Buscar por vendedor..." value="" /></br></br>
+    <input type="submit" name="enviar" value="Enviar" /></br></br>
+    <input type="reset" name="Borrar" value="Borrar formulario" /></p></br>
+    </form> 
     </body>
 </html>

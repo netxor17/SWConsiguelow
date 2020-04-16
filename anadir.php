@@ -9,7 +9,11 @@ while($fila=$resultado->fetch_assoc()){ //mientras se haya podido recoger una fi
     */
 
 $conexion = new mysqli("localhost", "root", "", "tiendaonline");
+if($conexion->connect_error){
+	die("Conexion con base de datos fallida: " . $conexion->connect_error);
+}
 
+//$id = $_POST["id"];
 $nombreProd = $_POST["nombreProducto"];
 $descripcion =$_POST["descripcion"];
 $queryidVendedor = "SELECT idVendedor FROM vendedores WHERE idVendedor = '1'";
@@ -30,9 +34,11 @@ $tallasDisponibles = $talla; //duda si esta bien
 $coloresDisponibles = $color; //sumo los colores
 $unidadesDisponibles =$unidades; //sumo las unidades que voy insertando 
 
+
 // consulta para insertar valores
-$insertar= "INSERT INTO productos (idVendedor,nombre,descripcion,precio,unidadesDisponibles,tallasDisponibles,coloresDisponibles,talla,color, categoria, agotado, reseña, numEstrellas,imagen) 
-VALUES ('$idVendedor','$nombreProd','$descripcion','$precio','$unidadesDisponibles','$tallasDisponibles','$coloresDisponibles','$talla','$color','$categoria','$agotado','$reseña','$numEstrellas','$imagen')";
+$insertar = "INSERT INTO productos (idVendedor,nombre,descripcion,precio,unidadesDisponibles,tallasDisponibles,coloresDisponibles,talla,color, categoria, agotado, reseña, numEstrellas, imagen) 
+VALUES ('1','$nombreProd','$descripcion','$precio','$unidadesDisponibles','$tallasDisponibles','$coloresDisponibles','$talla','$color','$categoria','0','ninguna','0','$imagen')";
+
 //ejecuta consulta
 $resultado = $conexion->query($insertar);
  if(!$resultado){
