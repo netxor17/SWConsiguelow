@@ -23,6 +23,8 @@
                     <li><a href="contacto.php">Contacto</a></li> 
                     <li><a href="vender.php">Vender</a></li>
                     <li><a href="mostrarProducto.php">Mostrar productos</a></li>
+                    <li><a href="busqueda.php">Buscar</a></li>
+                    <li><a href="usuario.php">Mi cuenta</a></li>
                         <?php 
                     if (isset($_SESSION['login'])) {
                         if ($_SESSION['login']){
@@ -61,59 +63,49 @@
 
             $nombreProd = $_POST["nombreProd"];
             $categoriaBuscada=$_POST["nombreCategoria"];
-            $buscarPorNombre= "SELECT * FROM productos WHERE nombre LIKE '$nombreProd%'"; //hago un query y muestro todas las filas de la tabla 'productos'
-            $buscarPorCategoria="SELECT * FROM productos p JOIN categoria c ON p.categoria = c.tipo WHERE p.categoria LIKE '$categoriaBuscada%'"; //JOIN ON 
-            $buscadoNombre = $conexion ->query($buscarPorNombre);
-            $buscadoCategoria = $conexion ->query($buscarPorCategoria);
+            $buscarPorCategoria="SELECT * FROM productos p JOIN categoria c WHERE c.tipo = p.categoria AND p.categoria LIKE '$categoriaBuscada%'"; //JOIN ON 
+            $consulta = "SELECT * FROM productos p JOIN categoria c WHERE p.categoria=c.tipo AND p.nombre LIKE '$nombreProd%'";
+            $buscadoCategoria =$conexion->query($buscarPorCategoria);
+            $buscaProducto=$conexion->query($consulta);
 
-            //while($fila=$buscadoNombre->fetch_assoc() || $fila=$buscadoCategoria->fetch_assoc()){ //mientras se haya podido recoger una fila de la tabla 'productos' de la bd
-            if ($buscadoNombre){
-                if ( $buscadoNombre->num_rows == 0) {
-                    echo "No hay resultados que coincidan con tu busqueda";
-                    $buscadoNombre->free();
-                }
-            elseif (strlen($nombreProd)>0 && $buscadoNombre->num_rows > 0 ){
-                $fila=$buscadoNombre->fetch_assoc() ;
-                echo " Mostrando productos por nombre \n" ;
-                include('filtrar.php'); //filtrar por precio, valoraciones...
-            ?> </br>
-        <tr></br>
-        <td><img height="50px" src="data:image/jpeg;base64,<?php echo base64_encode($fila['imagen']); ?>"/></td> <!-- muestro la imagen-->
-        <td><?php echo ($fila['nombre']); ?></td> <!-- recoge info de la tabla 'productos' la columna 'nombre'-->
-        <td><?php echo ($fila['descripcion']); ?></td>
-        <td><?php echo ($fila['precio']); ?></td>
-        <td><?php echo($fila['unidadesDisponibles']);?></td>
-        <td><?php echo ($fila['talla']); ?></td>
-        <td><?php echo ($fila['color']); ?></td>
-        <td><?php echo ($fila['categoria']); ?></td>
-        </tr>
-        <?php
+
+            if(strlen($nombreProd)>0){
+            while($fila=$buscaProducto->fetch_assoc()){ //mientras se haya podido recoger una fila de la tabla 'productos' de la bd
+                ?>
+              <tr>
+              <td><img height="50px" src="data:image/jpeg;base64,<?php echo base64_encode($fila['imagen']); ?>"/></td> <!-- muestro la imagen-->
+              <td><?php echo $fila['nombre']; ?></td> <!-- recoge info de la tabla 'productos' la columna 'nombre'-->
+              <td><?php echo $fila['descripcion']; ?></td>
+              <td><?php echo $fila['precio']; ?></td>
+              <td><?php echo $fila['unidadesDisponibles'];?></td>
+              <td><?php echo $fila['talla']; ?></td>
+              <td><?php echo $fila['color']; ?></td>
+              <td><?php echo $fila['categoria']; ?></td>
+              </tr>
+      
+              <?php
+              } //fin del while
             }
-         } //fin del if
-         if(strlen($categoriaBuscada)>0){
-             /*if(!$fila=$buscadoCategoria->fetch_assoc()){
-                echo "No se han encontrado resultados relacionados a tu busqueda por categoria";
-             } */
-                $fila=$buscadoCategoria->fetch_assoc();
-                echo "mostrando productos por categoria";
-
-        ?>
-        <tr></br>
-        <td><img height="50px" src="data:image/jpeg;base64,<?php echo base64_encode($fila['imagen']); ?>"/></td> <!-- muestro la imagen-->
-        <td><?php echo ($fila['nombre']); ?></td> <!-- recoge info de la tabla 'productos' la columna 'nombre'-->
-        <td><?php echo ($fila['descripcion']); ?></td>
-        <td><?php echo ($fila['precio']); ?></td>
-        <td><?php echo($fila['unidadesDisponibles']);?></td>
-        <td><?php echo ($fila['talla']); ?></td>
-        <td><?php echo ($fila['color']); ?></td>
-        <td><?php echo ($fila['categoria']); ?></td>
-        </tr>
+            elseif(strlen($categoriaBuscada)>0) {
+                while($fila =$buscadoCategoria->fetch_assoc()){
+                ?>
+                    <tr>
+                    <td><img height="50px" src="data:image/jpeg;base64,<?php echo base64_encode($fila['imagen']); ?>"/></td> <!-- muestro la imagen-->
+                    <td><?php echo ($fila['nombre']); ?></td> <!-- recoge info de la tabla 'productos' la columna 'nombre'-->
+                    <td><?php echo ($fila['descripcion']); ?></td>
+                    <td><?php echo ($fila['precio']); ?></td>
+                    <td><?php echo($fila['unidadesDisponibles']);?></td>
+                    <td><?php echo ($fila['talla']); ?></td>
+                    <td><?php echo ($fila['color']); ?></td>
+                    <td><?php echo ($fila['categoria']); ?></td>
+             </tr>
+             <?php  
+                 }
+            }
+              ?>
         </tbody>
         </table>
-    <?php
-             }    
-        //} //fin if 
-    ?>
+           
     </centre>
     </body>
 </html>

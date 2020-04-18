@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="style.css">
-    <title>Mostrar tabla productos</title>
+    <title>Mostrar Busqueda</title>
     </head>
     <body>
         <header>
@@ -25,7 +25,6 @@
                     <li><a href="mostrarProducto.php">Mostrar productos</a></li>
                     <li><a href="busqueda.php">Buscar</a></li>
                     <li><a href="usuario.php">Mi cuenta</a></li>
-
                         <?php 
                     if (isset($_SESSION['login'])) {
                         if ($_SESSION['login']){
@@ -43,8 +42,7 @@
                 ?>    
                 </li>
             </ul>
-        </nav>
-    </header>
+        </nav></br>
         <centre>
         <table>
          <thead>
@@ -59,19 +57,16 @@
                  <th>Categoria</th>
             </tr>
 
-         </thead>
+            </thead>
             <tbody>
             <?php
             //session_start();
             $conexion = new mysqli("localhost", "root", "", "tiendaonline");
-                $query= "SELECT * FROM productos"; //hago un query y muestro todas las filas de la tabla 'productos'
-                $resultado= $conexion ->query($query);
-                echo "Mostrando todos los productos que hay en la base de datos";
-                ?>
-                <li><a href="muestraFiltro.php">Filtrar por precio</a></li></br>
-                <?php
+                $filtro= "SELECT * FROM productos ORDER BY precio DESC "; //hago un query y muestro todas las filas de la tabla 'productos'
+                $resultado= $conexion ->query($filtro);
+                echo " Mostrando productos ordenados por precio de mayor a menor \n";
          while($fila=$resultado->fetch_assoc()){ //mientras se haya podido recoger una fila de la tabla 'productos' de la bd
-          ?>
+            ?>
         <tr>
         <td><img height="50px" src="data:image/jpeg;base64,<?php echo base64_encode($fila['imagen']); ?>"/></td> <!-- muestro la imagen-->
         <td><?php echo $fila['nombre']; ?></td> <!-- recoge info de la tabla 'productos' la columna 'nombre'-->
@@ -82,7 +77,6 @@
         <td><?php echo $fila['color']; ?></td>
         <td><?php echo $fila['categoria']; ?></td>
         </tr>
-
         <?php
         } //fin del while
         ?>

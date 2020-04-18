@@ -32,6 +32,8 @@ if($conexion->connect_error){
                     <li><a href="contacto.php">Contacto</a></li> 
                     <li><a href="vender.php">Vender</a></li>
                     <li><a href="mostrarProducto.php">Mostrar productos</a></li>
+                    <li><a href="busqueda.php">Buscar</a></li>
+                    <li><a href="usuario.php">Mi cuenta</a></li>
                         <?php 
                     if (isset($_SESSION['login'])) {
                         if ($_SESSION['login']){
