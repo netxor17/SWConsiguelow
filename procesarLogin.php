@@ -12,8 +12,8 @@ function usuario_existe($username, $passwd){
         echo '<p>Conexión con la BD realizada con éxito</p>';
     }
 
-    $query = "SELECT * FROM user WHERE username = '$username'";
-   // $query .= "WHERE username = $username AND password = $passwd";
+   // $query = "SELECT * FROM user WHERE username = '$username'";
+    $query = "SELECT * FROM usuario u WHERE u.nombre = '$username' AND u.password = '$passwd'";
     $result = $conexion->query($query) or die ($conexion->error. " en la línea ".(__LINE__-1));
     $numregs = $result->num_rows;
 
@@ -43,7 +43,7 @@ if (isset($_POST['username'])){
         $_SESSION['username'] = $username;
         $_SESSION['login'] = true;
 
-        header('location: '.url('index.php'));
+       // header('location: '.url('index.php'));
         exit;
     }else{  //no exite --> mensaje de error
         $mensaje = 'Identificación incorrecta. ';

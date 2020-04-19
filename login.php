@@ -1,3 +1,10 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="style.css" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>Inicio de sesión</title>
+    </head>
 <?php
 include('funciones.inc');
 //NOTA: crear un usuario para el sitio web
@@ -13,14 +20,17 @@ function usuario_existe($username, $passwd){
         echo '<p>Conexión con la BD realizada con éxito</p>';
     }
 
-    $query = "SELECT * FROM usuario WHERE nombre = '$username'";
+    $query = "SELECT * FROM usuario WHERE nombre = '$username' AND password = '$passwd'";
    // $query .= "WHERE username = $username AND password = $passwd";
     $result = $conexion->query($query) or die ($conexion->error. " en la línea ".(__LINE__-1));
     $numregs = $result->num_rows;
 
     $existe= NULL;
     if ($numregs){
-        echo 'Login correcto';
+        echo 'Login correcto, volver a inicio ';
+        ?> 
+        <a href="index.php">Portada</a>
+        <?php 
         $existe = true;
     }else{
         $existe = FALSE;
@@ -53,16 +63,22 @@ if (isset($_POST['username'])){
     }
 }
 ?>
-
-
-<!DOCTYPE html>
-<html>
-    <head>
-        <link rel="stylesheet" type="text/css" href="style.css" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <title>Inicio de sesión</title>
-    </head>
-
+    <header>
+    <nav>
+                    <ul>
+                    <li><a href="index.php?">Inicio</a></li>
+                    <li><a href="detalles.php">Detalles</a></li>
+                    <li><a href="bocetos.php">Bocetos</a></li>
+                    <li><a href="planificacion.php">Planificación</a></li>
+                    <li><a href="miembros.php">Miembros</a></li>
+                    <li><a href="contacto.php">Contacto</a></li> 
+                    <li><a href="vender.php">Vender</a></li>
+                    <li><a href="mostrarProducto.php">Mostrar productos</a></li>
+                    <li><a href="busqueda.php">Buscar</a></li>
+                    <li><a href="usuario.php">Mi cuenta</a></li>
+                    </ul>
+        </nav>
+    </header>
     <body>
         <form action="login.php" method="post">
             <p>Escribe tu nombre:

@@ -70,6 +70,7 @@
 
 
             if(strlen($nombreProd)>0){
+                echo ' Mostrando productos con el nombre: ' . htmlspecialchars($nombreProd);
             while($fila=$buscaProducto->fetch_assoc()){ //mientras se haya podido recoger una fila de la tabla 'productos' de la bd
                 ?>
               <tr>
@@ -87,6 +88,7 @@
               } //fin del while
             }
             elseif(strlen($categoriaBuscada)>0) {
+                echo ' Mostrando productos en la categoria: ' . htmlspecialchars($categoriaBuscada);
                 while($fila =$buscadoCategoria->fetch_assoc()){
                 ?>
                     <tr>

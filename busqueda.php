@@ -61,7 +61,6 @@ if($conexion->connect_error){
     <form action="muestraBusqueda.php" method="POST" enctype="multipart/form-data">   <!-- formulario para rellenar los campos -->
     <input type="text" name="nombreProd" placeholder="Buscar por nombre..." value="" /></br></br>
     <input type="text" name="nombreCategoria" placeholder="Buscar por categoria..." value="" /></br></br> 
-    <input type="text" name="nombreVendedor" placeholder="Buscar por vendedor..." value="" /></br></br>
     <input type="submit" name="enviar" value="Enviar" /></br></br>
     <input type="reset" name="Borrar" value="Borrar formulario" /></p></br>
     </form> 
