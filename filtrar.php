@@ -1,5 +1,5 @@
 <?php
-
+require_once __DIR__.'/includes/config.php';
 $conexion = new mysqli("localhost", "root", "", "tiendaonline");
 
 if($conexion->connect_error){

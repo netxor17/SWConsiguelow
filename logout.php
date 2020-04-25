@@ -1,4 +1,5 @@
-<?php session_start(); ?>
+<?php session_start();
+require_once __DIR__.'/includes/config.php'; ?>
 <!DOCTYPE html>
 <html>
     <head>
