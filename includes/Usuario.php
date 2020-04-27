@@ -24,7 +24,7 @@ class Usuario
         if ($rs) {
             if ( $rs->num_rows == 1) {
                 $fila = $rs->fetch_assoc();
-                $user = new Usuario($fila['nombreUsuario'], $fila['nombre'], $fila['password'], $fila['rol']);
+                $user = new Usuario($fila['nombre'], $fila['nombreUsuario'], $fila['password'], $fila['dni'],  $fila['direccion'],  $fila['email'],  $fila['telefono'],  $fila['ciuddad'],  $fila['codigo postal'],  $fila['carrito'], $fila['tarjeta credito'] ;
                 $user->id = $fila['id'];
                 $result = $user;
             }
@@ -36,15 +36,16 @@ class Usuario
         return $result;
     }
     
-    public static function crea($nombreUsuario, $nombre, $password, $rol)
+    public static function crea($nombre, $nombreUsuario, $password,  $dni, $direccion, $email, $telefono, $ciudad, $codigoPostal, $tarjetaCredito)
     {
         $user = self::buscaUsuario($nombreUsuario);
         if ($user) {
             return false;
         }
-        $user = new Usuario($nombreUsuario, $nombre, self::hashPassword($password), $rol);
+        $user = new Usuario($nombre, $nombreUsuario, self::hashPassword($password),  $dni, $direccion, $email, $telefono, $ciudad, $codigoPostal, $tarjetaCredito);
         return self::guarda($user);
     }
+
     
     private static function hashPassword($password)
     {
@@ -63,11 +64,19 @@ class Usuario
     {
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
-        $query=sprintf("INSERT INTO Usuarios(nombreUsuario, nombre, password, rol) VALUES('%s', '%s', '%s', '%s')"
-            , $conn->real_escape_string($usuario->nombreUsuario)
+        $query=sprintf("INSERT INTO Usuarios(dni, nombre, nombreUsuario, password, direccion, email, telefono, ciudad, codigo postal, carrito, tarjeta credito) VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%i', '%i')"
+            , $conn->real_escape_string($usuario->dni)    
             , $conn->real_escape_string($usuario->nombre)
+            , $conn->real_escape_string($usuario->nombreUsuario)
             , $conn->real_escape_string($usuario->password)
-            , $conn->real_escape_string($usuario->rol));
+            , $conn->real_escape_string($usuario->direccion));
+            , $conn->real_escape_string($usuario->email));
+            , $conn->real_escape_string($usuario->telefono));
+            , $conn->real_escape_string($usuario->ciudad));
+            , $conn->real_escape_string($usuario->codigoPostal));
+            , $conn->real_escape_string($usuario->carrito));
+            , $conn->real_escape_string($usuario->tarjetaCredito));
+
         if ( $conn->query($query) ) {
             $usuario->id = $conn->insert_id;
         } else {
@@ -81,12 +90,18 @@ class Usuario
     {
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
-        $query=sprintf("UPDATE Usuarios U SET nombreUsuario = '%s', nombre='%s', password='%s', rol='%s' WHERE U.id=%i"
+        $query=sprintf("UPDATE Usuarios U SET nombre='%s', password='%s', nombreUsuario='%s',  dni='%s', direccion='%s', email='%s', telefono='%s', ciudad='%s', codigo postal='%s', carrito='%i', trajeta credito='%i'   WHERE U.id=%i"
             , $conn->real_escape_string($usuario->nombreUsuario)
             , $conn->real_escape_string($usuario->nombre)
             , $conn->real_escape_string($usuario->password)
-            , $conn->real_escape_string($usuario->rol)
-            , $usuario->id);
+            , $conn->real_escape_string($usuario->direccion)
+            , $conn->real_escape_string($usuario->email)
+            , $conn->real_escape_string($usuario->direccion)
+            , $conn->real_escape_string($usuario->telefono)
+            , $conn->real_escape_string($usuario->codigoPostal)
+            , $conn->real_escape_string($usuario->carrito )
+            , $conn->real_escape_string($usuario->tarjetaCredito )
+            , $usuario->id;
         if ( $conn->query($query) ) {
             if ( $conn->affected_rows != 1) {
                 echo "No se ha podido actualizar el usuario: " . $usuario->id;
@@ -99,23 +114,43 @@ class Usuario
         
         return $usuario;
     }
+
     
     private $id;
 
-    private $nombreUsuario;
-
-    private $nombre;
-
     private $password;
 
-    private $rol;
+    private $dni;
 
-    private function __construct($nombreUsuario, $nombre, $password, $rol)
+    private $direccion;
+
+    private $email;
+
+    private $telefono;
+
+    private $ciudad;
+
+    private $codigoPostal;
+
+    private $carrito;
+
+    private $tarjetaCredito;
+
+    private $nombreUsuario;
+
+
+    private function __construct($nombre, $nombreUsuario, $password,  $dni, $direccion, $email, $telefono, $ciudad, $codigoPostal, $tarjetaCredito )
     {
-        $this->nombreUsuario= $nombreUsuario;
         $this->nombre = $nombre;
+        $this->nombreUsuario= $nombreUsuario;
         $this->password = $password;
-        $this->rol = $rol;
+        $this->dni = $dni;
+        $this->direccion = $direccion;
+        $this->email = $email;
+        $this->telefono = $telefono;
+        $this->ciudad = $ciudad;
+        $this->codigoPostal = $codigoPostal;
+        $this->tarjetaCredito = $tarjetaCredito;
     }
 
     public function id()
@@ -123,14 +158,49 @@ class Usuario
         return $this->id;
     }
 
-    public function rol()
+    public function password()
     {
-        return $this->rol;
+        return $this->password;
     }
 
     public function nombreUsuario()
     {
         return $this->nombreUsuario;
+    }
+
+    public function dni()
+    {
+        return $this->dnis;
+    }
+
+    public function direccion()
+    {
+        return $this->direccion;
+    }
+
+    public function email()
+    {
+        return $this->email;
+    }
+
+    public function telefono()
+    {
+        return $this->telefono;
+    }
+
+    public function ciudad()
+    {
+        return $this->ciudad;
+    }
+
+    public function codigoPostal()
+    {
+        return $this->codigoPostal;
+    }
+
+    public function nombre()
+    {
+        return $this->nombre;
     }
 
     public function compruebaPassword($password)
