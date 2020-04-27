@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `carrito`
 --
 
-CREATE TABLE `carrito` (
+/*CREATE TABLE `carrito` (
   `idCarrito` int(10) NOT NULL,
   `idProducto` int(10) UNSIGNED NOT NULL,
   `precio` decimal(4,2) NOT NULL,
@@ -179,7 +179,7 @@ INSERT INTO `productos` (`id`, `idVendedor`, `nombre`, `descripcion`, `precio`, 
 (1, 1, 'Cascos Sanson', 'Cascos musica', '40.99', 15, '1', '3', 'DEF', '3', 'electronica', 0, 'ninguna', 0, '');
 
 -- --------------------------------------------------------
-
+*/
 --
 -- Table structure for table `usuario`
 --
@@ -222,7 +222,7 @@ INSERT INTO `usuarios` (`dni`, `nombre`, `nombreUsuario`, `password`, `direccion
 
 -- --------------------------------------------------------
 
-
+/*
 --
 -- Table structure for table `vendedores`
 --
@@ -404,7 +404,7 @@ ALTER TABLE `productos`
   ADD CONSTRAINT `productos_ibfk_1` FOREIGN KEY (`categoria`) REFERENCES `categoria` (`tipo`) ON UPDATE CASCADE,
   ADD CONSTRAINT `productos_ibfk_2` FOREIGN KEY (`idVendedor`) REFERENCES `vendedores` (`idVendededor`) ON UPDATE CASCADE;
 COMMIT;
-
+*/
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

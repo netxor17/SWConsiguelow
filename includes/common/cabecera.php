@@ -11,7 +11,7 @@
             <li><a href="mostrarProducto.php">Mostrar productos</a></li>
                 <?php 
                 if (isset($_SESSION['login']) && ($_SESSION["login"]===true) ) {
-                    echo "Bienvenido, " . $_SESSION['nombre'] . ".<a href='logout.php'>(salir)</a>";
+                    echo "Bienvenido, " . $_SESSION['username'] . ".<a href='logout.php'>(salir)</a>";
                 }else {
                     echo "Usuario desconocido. <a href='login.php'>Login</a> <a href='registro.php'>Registro</a>";
                 }

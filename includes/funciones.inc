@@ -1,4 +1,6 @@
 <?php
+namespace es\fdi\ucm\aw;
+
 function url($url){
     /*si la directiva de configuración ession.use_trans_id es 0 no hay transmisión automática de SID por URL
     y si SID es vacío (usuario rechaza la cookie) tenemos qyue gestionar la transmisión*/
@@ -7,6 +9,12 @@ function url($url){
         $url .= ((strpos($url, '?') === FALSE) ?'?':'&').SID;
     }
     return $url;
+}
+
+function console_log( $data ){
+  echo '<script>';
+  echo 'console.log('. json_encode( $data ) .')';
+  echo '</script>';
 }
                  
 ?>

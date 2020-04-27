@@ -1,6 +1,8 @@
 <?php
 namespace es\fdi\ucm\aw;
 //require_once __DIR__ . '/Aplicacion.php';
+require_once __DIR__ . '/funciones.inc';
+
 
 class Usuario
 {
@@ -9,6 +11,7 @@ class Usuario
     {
         $user = self::buscaUsuario($nombreUsuario);
         if ($user && $user->compruebaPassword($password)) {
+            echo "dentro del if";
             return $user;
         }
         return false;
@@ -24,9 +27,14 @@ class Usuario
         if ($rs) {
             if ( $rs->num_rows == 1) {
                 $fila = $rs->fetch_assoc();
-                $user = new Usuario($fila['nombre'], $fila['nombreUsuario'], $fila['password'], $fila['dni'],  $fila['direccion'],  $fila['email'],  $fila['telefono'],  $fila['ciuddad'],  $fila['codigo postal'],  $fila['carrito'], $fila['tarjeta credito'] ;
+                $user = new Usuario($fila['nombre'], $fila['nombreUsuario'], $fila['password'], $fila['dni'],  $fila['direccion'],  $fila['email'],  $fila['telefono'],  $fila['ciudad'],  $fila['codigo postal'],  $fila['carrito'], $fila['tarjeta credito'] );
                 $user->id = $fila['id'];
                 $result = $user;
+              /*  echo "busca usuario <br>"; 
+                echo $result->password;
+                echo "<br>";
+                echo $result->nombreUsuario;
+                echo "<br>";*/
             }
             $rs->free();
         } else {
@@ -64,17 +72,18 @@ class Usuario
     {
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
-        $query=sprintf("INSERT INTO Usuarios(dni, nombre, nombreUsuario, password, direccion, email, telefono, ciudad, codigo postal, carrito, tarjeta credito) VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%i', '%i')"
+        //console_log($usuario);
+        $query=sprintf("INSERT INTO `usuarios` (`dni`, `nombre`, `nombreUsuario`, `password`, `direccion`, `email`, `telefono`, `ciudad`, `codigo postal`, `carrito`, `tarjeta credito`) VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%i', '%i')"
             , $conn->real_escape_string($usuario->dni)    
             , $conn->real_escape_string($usuario->nombre)
             , $conn->real_escape_string($usuario->nombreUsuario)
             , $conn->real_escape_string($usuario->password)
-            , $conn->real_escape_string($usuario->direccion));
-            , $conn->real_escape_string($usuario->email));
-            , $conn->real_escape_string($usuario->telefono));
-            , $conn->real_escape_string($usuario->ciudad));
-            , $conn->real_escape_string($usuario->codigoPostal));
-            , $conn->real_escape_string($usuario->carrito));
+            , $conn->real_escape_string($usuario->direccion)
+            , $conn->real_escape_string($usuario->email)
+            , $conn->real_escape_string($usuario->telefono)
+            , $conn->real_escape_string($usuario->ciudad)
+            , $conn->real_escape_string($usuario->codigoPostal)
+            , $conn->real_escape_string($usuario->carrito)
             , $conn->real_escape_string($usuario->tarjetaCredito));
 
         if ( $conn->query($query) ) {
@@ -101,7 +110,7 @@ class Usuario
             , $conn->real_escape_string($usuario->codigoPostal)
             , $conn->real_escape_string($usuario->carrito )
             , $conn->real_escape_string($usuario->tarjetaCredito )
-            , $usuario->id;
+            , $usuario->id);
         if ( $conn->query($query) ) {
             if ( $conn->affected_rows != 1) {
                 echo "No se ha podido actualizar el usuario: " . $usuario->id;
@@ -150,6 +159,7 @@ class Usuario
         $this->telefono = $telefono;
         $this->ciudad = $ciudad;
         $this->codigoPostal = $codigoPostal;
+        $this->carrito = 0; //new carrito
         $this->tarjetaCredito = $tarjetaCredito;
     }
 
@@ -203,8 +213,19 @@ class Usuario
         return $this->nombre;
     }
 
+    public function carrito()
+    {
+        return $this->carrito;
+    }
+
     public function compruebaPassword($password)
     {
+       /* echo $password;
+        echo "<br>";
+        
+        echo $this->password;
+        echo "<br>";*/
+
         return password_verify($password, $this->password);
     }
 
