@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__.'/includes/config.php';
 //include('vender.php');
  //recibo datos introducidos y los almaceno en variables
 //$ = mysqli_query($conexion,$usuario); //$usuario es el nombre de usuario de la sesion
@@ -32,8 +33,6 @@ if($conexion->connect_error){
                     <li><a href="contacto.php">Contacto</a></li> 
                     <li><a href="vender.php">Vender</a></li>
                     <li><a href="mostrarProducto.php">Mostrar productos</a></li>
-                    <li><a href="busqueda.php">Buscar</a></li>
-                    <li><a href="usuario.php">Mi cuenta</a></li>
                         <?php 
                     if (isset($_SESSION['login'])) {
                         if ($_SESSION['login']){
@@ -61,6 +60,7 @@ if($conexion->connect_error){
     <form action="muestraBusqueda.php" method="POST" enctype="multipart/form-data">   <!-- formulario para rellenar los campos -->
     <input type="text" name="nombreProd" placeholder="Buscar por nombre..." value="" /></br></br>
     <input type="text" name="nombreCategoria" placeholder="Buscar por categoria..." value="" /></br></br> 
+    <input type="text" name="nombreVendedor" placeholder="Buscar por vendedor..." value="" /></br></br>
     <input type="submit" name="enviar" value="Enviar" /></br></br>
     <input type="reset" name="Borrar" value="Borrar formulario" /></p></br>
     </form> 

@@ -1,5 +1,7 @@
 <?php
-    session_start();
+use es\fdi\ucm\aw\Producto;
+
+require_once __DIR__.'/includes/config.php';
 ?>
 
 <!DOCTYPE html>
@@ -13,38 +15,18 @@
     </head>
     <body>
         <header>
-                <nav>
-                    <ul>
+            <nav>
+            <ul>
                     <li><a href="index.php?">Inicio</a></li>
-                    <li><a href="detalles.php">Detalles</a></li>
-                    <li><a href="bocetos.php">Bocetos</a></li>
-                    <li><a href="planificacion.php">Planificación</a></li>
-                    <li><a href="miembros.php">Miembros</a></li>
-                    <li><a href="contacto.php">Contacto</a></li> 
-                    <li><a href="vender.php">Vender</a></li>
-                    <li><a href="mostrarProducto.php">Mostrar productos</a></li>
-                    <li><a href="busqueda.php">Buscar</a></li>
-                    <li><a href="usuario.php">Mi cuenta</a></li>
-
-                        <?php 
-                    if (isset($_SESSION['login'])) {
-                        if ($_SESSION['login']){
-                            if (isset($_SESSION['username'])){
-                                $nombre = $_SESSION['username'];
-                                echo 'Hello ' . htmlspecialchars($nombre) . '! ';
-                                echo  '<a href="logout.php">Logout</a>';
-                            }
-                        }
-                     
-                }
-                else{
-                    echo "Usuario desconocido. <a href='login.php'>Login</a>";  
-                }
-                ?>    
-                </li>
+                    <li><a href="detalles.html">Detalles</a></li>
+                    <li><a href="bocetos.html">Bocetos</a></li>
+                    <li><a href="planificacion.html">Planificación</a></li>
+                    <li><a href="miembros.html">Miembros</a></li>
+                    <li><a href="contacto.html">Contacto</a></li> 
+                    <a href="vender.php">Vender</a></br>
             </ul>
-        </nav>
-    </header>
+            </nav>
+        </header>
         <centre>
         <table>
          <thead>
@@ -62,16 +44,8 @@
          </thead>
             <tbody>
             <?php
-            //session_start();
-            $conexion = new mysqli("localhost", "root", "", "tiendaonline");
-                $query= "SELECT * FROM productos"; //hago un query y muestro todas las filas de la tabla 'productos'
-                $resultado= $conexion ->query($query);
-                echo "Mostrando todos los productos que hay en la base de datos";
-                ?>
-                <li><a href="muestraFiltro.php">Filtrar por precio</a></li></br>
-                <?php
-         while($fila=$resultado->fetch_assoc()){ //mientras se haya podido recoger una fila de la tabla 'productos' de la bd
-          ?>
+           // $producto = Producto::mostrarProductos();
+            ?>
         <tr>
         <td><img height="50px" src="data:image/jpeg;base64,<?php echo base64_encode($fila['imagen']); ?>"/></td> <!-- muestro la imagen-->
         <td><?php echo $fila['nombre']; ?></td> <!-- recoge info de la tabla 'productos' la columna 'nombre'-->
@@ -82,10 +56,6 @@
         <td><?php echo $fila['color']; ?></td>
         <td><?php echo $fila['categoria']; ?></td>
         </tr>
-
-        <?php
-        } //fin del while
-        ?>
         </tbody>
         </table>
     </centre>

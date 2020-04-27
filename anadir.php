@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__.'/includes/config.php';
 //include('vender.php');
  //recibo datos introducidos y los almaceno en variables
 //$ = mysqli_query($conexion,$usuario); //$usuario es el nombre de usuario de la sesion
