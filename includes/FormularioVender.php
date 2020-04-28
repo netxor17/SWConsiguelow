@@ -12,18 +12,18 @@ class FormularioVender extends Form
     {
         $nombreProd = '';
         $descripcion= '';
-        $precio =null;
+        $precio ='';
         $talla='';
         $color='';
         $categoria ='';
         $reseña ='';
-        $agotado = false;
-        $unidades=null;
-        $unidadesDisponibles=null;
-        $tallasDisponibles = null;
-        $coloresDisponibles = null;
-        $numEstrellas = 0;
-        $imagen = null;
+        $agotado = '';
+        $unidades='';
+        $unidadesDisponibles='';
+        $tallasDisponibles = '';
+        $coloresDisponibles = '';
+        $numEstrellas = '';
+        $imagen = '';
 
         if ($datos) {
             $nombreProd = isset($datos['nombre']) ? $datos['nombre'] : $nombreProd;
@@ -52,7 +52,7 @@ class FormularioVender extends Form
             <p><label>Talla</label> <input type="text" name="talla" value="$talla"/></p>
             <p><label>Color del producto:</label> <input type="text" name="color" value="$color"/></p>
             <p><label>Categoria</label> <input type="text" name="categoria" value="$categoria"/></p>
-            <p><label>Imagen</label> <input type="text" name="imagen" value="$imagen"/></p>
+            <p><label>Imagen</label> <input type="file" name="imagen" value="$imagen"/></p>
             <button type="submit" name="sell">Vender</button>
         </fieldset>
         EOF;

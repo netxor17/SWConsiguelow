@@ -29,17 +29,30 @@ class Producto
         return $result;
     }
 
-    /*public static function muestraProductos($producto)
+   /* public static function muestraProductos($producto)
     {
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
-        $query = sprintf("SELECT * FROM Productos P"); //$conn->real_escape_string($producto);
+        $query = sprintf("SELECT * FROM Productos P"); $conn->real_escape_string($producto);
         $rs = $conn->query($query);
         $result = false;
         if ($rs) {
             if ( $rs->num_rows >= 1) {
                 $fila = $rs->fetch_assoc();
-                $producto = new Producto($fila['nombre'], $fila['descripcion'], $fila['precio'],$fila['unidades'], $fila['unidadesDisponibles'],$fila['tallasDisponibles'],$fila['coloresDisponibles'],$fila['talla'],$fila['color'],$fila['categoria'],$fila['reseña'],$fila['agotado'],$fila['numEstrellas'],$fila['imagen']);
+                echo  $fila['nombre'];
+                echo $fila['descripcion']; 
+                echo $fila['precio'];
+                echo $fila['unidades'];
+                echo $fila['unidadesDisponibles'];
+                echo $fila['tallasDisponibles'];
+                echo $fila['coloresDisponibles'];
+                echo $fila['talla'];
+                echo $fila['color'];
+                echo $fila['categoria'];
+                echo $fila['reseña'];
+                echo $fila['agotado'];
+                echo $fila['numEstrellas'];
+                echo $fila['imagen'];
                 $producto->id = $fila['id'];
                 $result = $producto;
             }
@@ -81,7 +94,7 @@ class Producto
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
         $query=sprintf("INSERT INTO `productos`  (`nombre`,`descripcion`,`precio`,`unidades`,`unidadesDisponibles`, `tallasDisponibles`,`coloresDisponibles`, `talla`, `color`, `categoria`,`agotado`,`reseña`,`numEstrellas`, `imagen`) 
-		VALUES('%s', '%s', '%i', '%i','%i', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')"
+		 VALUES('%s', '%s', '%f', '%d','%d', '%s', '%s', '%s', '%s', '%s', '%b', '%s', '%d','%s')"
             , $conn->real_escape_string($producto->nombre)
             , $conn->real_escape_string($producto->descripcion)
             , $conn->real_escape_string($producto->precio)
@@ -98,7 +111,7 @@ class Producto
             ,$conn->real_escape_string($producto->imagen)); // hay que insertar una imagen
         if ( $conn->query($query) ) {
             $producto->id = $conn->insert_id;
-            //$producto->idVendedor = $conn->id; // como se dice que el idVendedor es el id del usuario que lo vende?
+           // $producto->idVendedor = $conn->id;
         } else {
             echo "Error al insertar en la BD: (" . $conn->errno . ") " . utf8_encode($conn->error);
             exit();
@@ -149,11 +162,11 @@ class Producto
 
     private $precio;
 	
-    private $unidadesDisponibles=0;
+    private $unidadesDisponibles;
 	
-    private $tallasDisponibles=NULL;
+    private $tallasDisponibles;
 	
-    private $coloresDisponibles=NULL;
+    private $coloresDisponibles;
 	
     private $talla;
 	
@@ -161,11 +174,11 @@ class Producto
 	
     private $categoria;
 	
-    private $agotado = false;
+    private $agotado;
 	
-    private $reseña =NULL;
+    private $reseña;
 
-    private $numEstrellas=0;
+    private $numEstrellas;
 	
     private $imagen;
 
@@ -215,7 +228,7 @@ class Producto
     
     public function tallasDisponibles()
     {
-        return $this->tallasDisponibles; //deberia devolver todas las tallas disponibles
+        return $this->tallasDisponibles; 
     }
 
     public function unidadesDisponibles()

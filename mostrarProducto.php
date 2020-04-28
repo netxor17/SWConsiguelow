@@ -10,7 +10,7 @@ require_once __DIR__.'/includes/config.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles/style.css">
     <title>Mostrar tabla productos</title>
     </head>
     <body>
@@ -44,7 +44,7 @@ require_once __DIR__.'/includes/config.php';
          </thead>
             <tbody>
             <?php
-           // $producto = Producto::mostrarProductos();
+            $producto = Producto::muestraProductos($producto);
             ?>
         <tr>
         <td><img height="50px" src="data:image/jpeg;base64,<?php echo base64_encode($fila['imagen']); ?>"/></td> <!-- muestro la imagen-->
