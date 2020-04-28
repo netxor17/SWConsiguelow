@@ -1,5 +1,7 @@
 <?php
-    require_once __DIR__.'/includes/config.php';
+use es\fdi\ucm\aw\Producto;
+
+require_once __DIR__.'/includes/config.php';
 ?>
 
 <!DOCTYPE html>
@@ -34,11 +36,7 @@
          </thead>
             <tbody>
             <?php
-            //session_start();
-            $conexion = new mysqli("localhost", "root", "", "tiendaonline");
-                $query= "SELECT * FROM productos"; //hago un query y muestro todas las filas de la tabla 'productos'
-                $resultado= $conexion ->query($query);
-         while($fila=$resultado->fetch_assoc()){ //mientras se haya podido recoger una fila de la tabla 'productos' de la bd
+           // $producto = Producto::mostrarProductos();
             ?>
         <tr>
         <td><img height="50px" src="data:image/jpeg;base64,<?php echo base64_encode($fila['imagen']); ?>"/></td> <!-- muestro la imagen-->
@@ -50,10 +48,6 @@
         <td><?php echo $fila['color']; ?></td>
         <td><?php echo $fila['categoria']; ?></td>
         </tr>
-
-        <?php
-        } //fin del while
-        ?>
         </tbody>
         </table>
     </centre>
