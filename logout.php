@@ -16,7 +16,6 @@ require_once __DIR__.'/includes/config.php'; ?>
             //unset($_SESSION['esAdmin']);
             session_destroy();
             echo 'Tu sesión ha finalizado'; 
- 
         ?>
             <a href="index.php">Portada</a>
 	</body>
