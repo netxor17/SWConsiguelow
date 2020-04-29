@@ -17,8 +17,13 @@
         require("includes/common/cabecera.php");
         ?>
     </header>
-        <centre>
-        <table>
+     <div id="flex-container">
+     <?php
+        require("includes/common/sidebarIzq.php");
+
+    ?>      <div id="contenido">
+       
+        <table class="tabla-productos">
          <thead>
             <tr>
                  <th>Imagen</th>
@@ -56,7 +61,11 @@
         ?>
         </tbody>
         </table>
-    </centre>
+    </div>
+     <?php
+       require("includes/common/sidebarDer.php");
+       ?>
+   </div>
     </body>
 </html>
 

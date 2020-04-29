@@ -11,26 +11,39 @@
     <link rel="stylesheet" href="styles/style.css">
     <title>Mostrar tabla productos</title>
     </head>
+    
     <body>
-        <header>
         <?php
         require("includes/common/cabecera.php");
-         ?>
-    </header>
-    <body>
-        <centre>
+        ?>
+        <div id="flex-container">
+     <?php
+        require("includes/common/sidebarIzq.php");
+
+    ?>      <div id="contenido">
             <form action="anadir.php" method="POST" enctype="multipart/form-data">   <!-- formulario para rellenar los campos -->
-            <input type="text" REQUIRED name="nombreProducto" placeholder="Nombre del producto.." value="" /></br></br>  <!-- REQUIRED significa campo obligatorio -->
-            <input type="text" REQUIRED name="descripcion" placeholder="Descripcion producto.." value="" /></br></br>
-            <input type="text" REQUIRED name="precio" placeholder="Precio producto.." value="" /></br></br>
-            <input type="text" REQUIRED name="unidades" placeholder="Unidades.." value="" /></br></br>
-            <input type="text" REQUIRED name="talla" placeholder="Talla.." value="" /></br></br>
-            <input type="text" REQUIRED name="color" placeholder="Color..." value="" /></br></br>
-            <input type="text" REQUIRED name="categoria" placeholder="Categoria.." value="" /></br></br>
-            <input type="file" name="imagen" /></br></br>
-            <input type="submit" name="enviar" value="Enviar" /></br></br>
-            <input type="reset" name="Borrar" value="Borrar formulario" /></p></br>
+            <input type="text" REQUIRED name="nombreProducto" placeholder="Nombre del producto.." value="" />  <!-- REQUIRED significa campo obligatorio -->
+            <input type="text" REQUIRED name="descripcion" placeholder="Descripcion producto.." value="" />
+            <input type="text" REQUIRED name="precio" placeholder="Precio producto.." value="" />
+            <input type="text" REQUIRED name="unidades" placeholder="Unidades.." value="" />
+            <select name="talla">
+                <option value="XS">XS</option>
+                <option value="S">S</option>
+                <option value="M">M</option>
+                <option value="L">L</option>
+                <option value="XL">XL</option>
+            </select>
+            <input type="color" name="color"/>
+            <input type="text" REQUIRED name="categoria" placeholder="Categoria.." value="" />
+            <input type="file" name="imagen" />
+            <input type="submit" name="enviar" value="Enviar" />
+            <input type="reset" name="Borrar" value="Borrar formulario" />
             </form>
-        </centre>   
-    </body>
+        </div>
+        <?php
+       require("includes/common/sidebarDer.php");
+       ?>
+    </div>
+    </div>
+</body>
 </html>
