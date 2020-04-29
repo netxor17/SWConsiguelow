@@ -20,6 +20,12 @@ class Producto
                 $producto = new Producto($fila['nombre'], $fila['descripcion'], $fila['precio'],$fila['unidades'], $fila['unidadesDisponibles'],$fila['tallasDisponibles'],$fila['coloresDisponibles'],$fila['talla'],$fila['color'],$fila['categoria'],$fila['reseña'],$fila['agotado'],$fila['numEstrellas'],$fila['imagen']);
                 $producto->id = $fila['id'];
                 $result = $producto;
+                /*if($producto->unidadesDisponibles>0){
+                    $producto->agotado = false;
+                }
+                else{
+                    $producto->agotado=true;
+                }*/
             }
             $rs->free();
         } else {
@@ -29,27 +35,123 @@ class Producto
         return $result;
     }
 
-    /*public static function muestraProductos($producto)
+    public static function muestraProductos($producto)
     {
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
-        $query = sprintf("SELECT * FROM Productos P"); //$conn->real_escape_string($producto);
+        $query = sprintf("SELECT * FROM Productos P"); $conn->real_escape_string($producto);
         $rs = $conn->query($query);
         $result = false;
+        ?>
+        <centre>
+        <table>
+        <thead>
+            <tr>
+                 <th>Imagen</th>
+                 <th>Nombre</th>
+                 <th>Descripcion</th>
+                 <th>Precio</th>
+                 <th>Unidades</th>
+                 <th>Talla</th>
+                 <th>Color</th>
+                 <th>Categoria</th>
+                 <th>Reseña</th>
+                 <th>Agotado</th>
+                 <th>Numero Estrellas</th>
+            </tr>
+        </thead>
+        <tbody>
+         <?php
         if ($rs) {
-            if ( $rs->num_rows >= 1) {
-                $fila = $rs->fetch_assoc();
-                $producto = new Producto($fila['nombre'], $fila['descripcion'], $fila['precio'],$fila['unidades'], $fila['unidadesDisponibles'],$fila['tallasDisponibles'],$fila['coloresDisponibles'],$fila['talla'],$fila['color'],$fila['categoria'],$fila['reseña'],$fila['agotado'],$fila['numEstrellas'],$fila['imagen']);
-                $producto->id = $fila['id'];
-                $result = $producto;
+           // if ( $rs->num_rows >= 1) {
+               while( $fila = $rs->fetch_assoc()){
+                ?>
+        <tr>
+        <td><img height="50px" src="data:image/jpeg;base64,<?php echo base64_encode($fila['imagen']); ?>"/></td> <!-- muestro la imagen-->
+        <td><?php echo $fila['nombre']; ?></td>
+        <td><?php echo $fila['descripcion']; ?></td>
+        <td><?php echo $fila['precio']; ?></td>
+        <td><?php echo $fila['unidadesDisponibles'];?></td>
+        <td><?php echo $fila['talla']; ?></td>
+        <td><?php echo $fila['color']; ?></td>
+        <td><?php echo $fila['categoria']; ?></td>
+        <td><?php echo $fila['reseña']; ?></td>
+        <td><?php echo $fila['agotado']; ?></td>
+        <td><?php echo $fila['numEstrellas']; ?></td>
+        </tr>
+        <?php
             }
+        ?>
+            </tbody>
+            </table>
+            </centre>
+            <?php
             $rs->free();
         } else {
             echo "Error al consultar en la BD: (" . $conn->errno . ") " . utf8_encode($conn->error);
             exit();
         }
         return $result;
-    }*/
+    }
+
+    public static function muestraProductosPorPrecioDesc($producto)
+    {
+        $app = Aplicacion::getSingleton();
+        $conn = $app->conexionBd();
+        $query = sprintf("SELECT * FROM Productos P ORDER BY P.precio DESC"); $conn->real_escape_string($producto);
+        $rs = $conn->query($query);
+        $result = false;
+        ?>
+        <centre>
+        <table>
+        <thead>
+            <tr>
+                 <th>Imagen</th>
+                 <th>Nombre</th>
+                 <th>Descripcion</th>
+                 <th>Precio</th>
+                 <th>Unidades</th>
+                 <th>Talla</th>
+                 <th>Color</th>
+                 <th>Categoria</th>
+                 <th>Reseña</th>
+                 <th>Agotado</th>
+                 <th>Numero Estrellas</th>
+            </tr>
+        </thead>
+        <tbody>
+         <?php
+        if ($rs) {
+           // if ( $rs->num_rows >= 1) {
+               while( $fila = $rs->fetch_assoc()){
+                ?>
+        <tr>
+        <td><img height="50px" src="data:image/jpeg;base64,<?php echo base64_encode($fila['imagen']); ?>"/></td> <!-- muestro la imagen-->
+        <td><?php echo $fila['nombre']; ?></td>
+        <td><?php echo $fila['descripcion']; ?></td>
+        <td><?php echo $fila['precio']; ?></td>
+        <td><?php echo $fila['unidadesDisponibles'];?></td>
+        <td><?php echo $fila['talla']; ?></td>
+        <td><?php echo $fila['color']; ?></td>
+        <td><?php echo $fila['categoria']; ?></td>
+        <td><?php echo $fila['reseña']; ?></td>
+        <td><?php echo $fila['agotado']; ?></td>
+        <td><?php echo $fila['numEstrellas']; ?></td>
+        </tr>
+        <?php
+            }
+        ?>
+            </tbody>
+            </table>
+            </centre>
+            <?php
+            $rs->free();
+        } else {
+            echo "Error al consultar en la BD: (" . $conn->errno . ") " . utf8_encode($conn->error);
+            exit();
+        }
+        return $result;
+    }
 
 
     
@@ -63,11 +165,7 @@ class Producto
         return self::guardaProd($producto);
     }
     
-    private static function hashPassword($password)
-    {
-        return password_hash($password, PASSWORD_DEFAULT);
-    }
-    
+
     public static function guardaProd($producto)
     {
         if ($producto->id !== null) {
@@ -81,7 +179,7 @@ class Producto
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
         $query=sprintf("INSERT INTO `productos`  (`nombre`,`descripcion`,`precio`,`unidades`,`unidadesDisponibles`, `tallasDisponibles`,`coloresDisponibles`, `talla`, `color`, `categoria`,`agotado`,`reseña`,`numEstrellas`, `imagen`) 
-		VALUES('%s', '%s', '%i', '%i','%i', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')"
+		 VALUES('%s', '%s', '%f', '%d','%d', '%s', '%s', '%s', '%s', '%s', '%b', '%s', '%d','%s')"
             , $conn->real_escape_string($producto->nombre)
             , $conn->real_escape_string($producto->descripcion)
             , $conn->real_escape_string($producto->precio)
@@ -98,7 +196,7 @@ class Producto
             ,$conn->real_escape_string($producto->imagen)); // hay que insertar una imagen
         if ( $conn->query($query) ) {
             $producto->id = $conn->insert_id;
-            //$producto->idVendedor = $conn->id; // como se dice que el idVendedor es el id del usuario que lo vende?
+           // $producto->idVendedor = $conn->id;
         } else {
             echo "Error al insertar en la BD: (" . $conn->errno . ") " . utf8_encode($conn->error);
             exit();
@@ -110,7 +208,7 @@ class Producto
     {
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
-        $query=sprintf("UPDATE Productos P SET nombre = '%s', descripcion='%s', precio='%f', rol='%s' WHERE P.id=%i"
+        $query=sprintf("UPDATE Productos P SET nombre = '%s', descripcion='%s', precio='%f', unidades='%d, unidadesDisponibles ='%d', tallasDisponibles ='%s', coloresDisponibles ='%s', talla ='%s', color ='%s', categoria ='%s', reseña ='%s', agotado ='%b', numEstrellas ='%d', imagen ='%s' WHERE P.id=%i"
             , $conn->real_escape_string($producto->nombre)
             , $conn->real_escape_string($producto->descripcion)
             , $conn->real_escape_string($producto->precio)
@@ -149,11 +247,11 @@ class Producto
 
     private $precio;
 	
-    private $unidadesDisponibles=0;
+    private $unidadesDisponibles;
 	
-    private $tallasDisponibles=NULL;
+    private $tallasDisponibles;
 	
-    private $coloresDisponibles=NULL;
+    private $coloresDisponibles;
 	
     private $talla;
 	
@@ -161,11 +259,11 @@ class Producto
 	
     private $categoria;
 	
-    private $agotado = false;
+    private $agotado;
 	
-    private $reseña =NULL;
+    private $reseña;
 
-    private $numEstrellas=0;
+    private $numEstrellas;
 	
     private $imagen;
 
@@ -215,7 +313,7 @@ class Producto
     
     public function tallasDisponibles()
     {
-        return $this->tallasDisponibles; //deberia devolver todas las tallas disponibles
+        return $this->tallasDisponibles; 
     }
 
     public function unidadesDisponibles()
@@ -262,15 +360,5 @@ class Producto
     public function imagen()
     {
         return $this->imagen;
-    }
-
-    public function compruebaPassword($password)
-    {
-        return password_verify($password, $this->password);
-    }
-
-    public function cambiaPassword($nuevoPassword)
-    {
-        $this->password = self::hashPassword($nuevoPassword);
     }
 }

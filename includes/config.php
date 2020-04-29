@@ -42,6 +42,12 @@ define('BD_HOST', 'localhost');
 define('BD_NAME', 'consiguelowdb');
 define('BD_USER', 'consiguelowdb');
 define('BD_PASS', 'consiguelowdb');
+
+/*Database de Nestor
+define('BD_HOST', 'localhost');
+define('BD_NAME', 'tiendaonline');
+define('BD_USER', 'root');
+define('BD_PASS', '');
 /**
  * Configuración del soporte de UTF-8, localización (idioma y país) y zona horaria
  */

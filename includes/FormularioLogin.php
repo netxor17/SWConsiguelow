@@ -38,14 +38,15 @@ EOF;
         }
         
         $password = isset($datos['password']) ? $datos['password'] : null;
+        
         if ( empty($password) ) {
             $result[] = "El password no puede estar vacío.";
         }
         
         if (count($result) === 0) {
-            echo $nombreUsuario;
-            echo "<br>";
-            echo $password;
+            //echo $nombreUsuario;
+            //echo "<br>";
+            //echo $password;
             $usuario = Usuario::login($nombreUsuario, $password);
             if ( ! $usuario ) {
                 // No se da pistas a un posible atacante

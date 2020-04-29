@@ -3,24 +3,24 @@ require_once __DIR__.'/includes/config.php';
 use es\fdi\ucm\aw\FormularioVender;
 ?>
 
-<!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="styles/style.css">
-    <title>Subir un producto</title>
+    <head>
+        <link rel="stylesheet" type="text/css" href="styles/style.css" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>Subir un producto</title>
     </head>
+
     <body>
-        <header>
-        <?php
-        require("includes/common/cabecera.php");
-         ?>
-    </header>
-    <body>
-    <?php 
-    $form = new FormularioVender(); $form->gestiona();
-    ?>
+        <div id="contenedor">
+            <?php
+                require("includes/common/cabecera.php");
+            ?>
+            <div id="contenido">
+                <h1>Subir un producto</h1>
+            <?php 
+                $form = new FormularioVender(); $form->gestiona();
+            ?>
+            </div>
+        </div>  
     </body>
 </html>

@@ -1,19 +1,29 @@
+
 <?php
 require_once __DIR__.'/includes/config.php';
-$conexion = new mysqli("localhost", "root", "", "tiendaonline");
-
-if($conexion->connect_error){
-	die("Conexion con base de datos fallida: " . $conexion->connect_error);
-}
+use es\fdi\ucm\aw\FormularioFiltrar;
 ?>
+
 <html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="styles/style.css" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>Filtrar producto</title>
+    </head>
+
     <body>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="style.css">
-    <title>Filtrar por...</title>
-    <button type="button1" onclick="'muestraBusqueda.php'">Filtrar por precio</button>
-    <button type="button2" onclick="ordenaPorNombre()">Filtrar por Nombre</button> <!--llamaria a miScript.js -->
+        <div id="contenedor">
+            <?php
+                require("includes/common/cabecera.php");
+            ?>
+            <div id="contenido">
+                <h1>Filtrar productos</h1>
+             <h2>Filtrar por...</h2>
+             <?php 
+                $form = new FormularioFiltrar(); $form->gestiona();
+            ?>
+             
+            </div>
+        </div>  
     </body>
 </html>
