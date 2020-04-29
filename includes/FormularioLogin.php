@@ -38,6 +38,7 @@ EOF;
         }
         
         $password = isset($datos['password']) ? $datos['password'] : null;
+        
         if ( empty($password) ) {
             $result[] = "El password no puede estar vacío.";
         }

@@ -151,8 +151,6 @@ class FormularioVender extends Form
             $result[] = "La imagen no puede estar vacía.";
         }
 
-        
-        
        if (count($result) === 0) {
             $producto = Producto::añadeProd($nombreProd, $descripcion, $precio,$unidades,$unidadesDisponibles,$tallasDisponibles,$coloresDisponibles,$talla,$color,$categoria,$reseña,$agotado,$numEstrellas,$imagen);
             if ( ! $producto ) {
