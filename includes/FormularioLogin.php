@@ -44,9 +44,7 @@ EOF;
         }
         
         if (count($result) === 0) {
-            //echo $nombreUsuario;
-            //echo "<br>";
-            //echo $password;
+
             $usuario = Usuario::login($nombreUsuario, $password);
             if ( ! $usuario ) {
                 // No se da pistas a un posible atacante
@@ -54,6 +52,7 @@ EOF;
             } else {
                 $_SESSION['login'] = true;
                 $_SESSION['username'] = $nombreUsuario;
+                $_SESSION['idUser'] = $usuario->id;
                 //$_SESSION['esAdmin'] = strcmp($usuario->rol(), 'admin') == 0 ? true : false;
                 $result = 'index.php';
             }
