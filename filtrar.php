@@ -17,8 +17,8 @@ use es\fdi\ucm\aw\FormularioFiltrar;
                 require("includes/common/cabecera.php");
             ?>
             <div id="contenido">
-                <h1>Filtrar productos</h1>
-             <h2>Filtrar por...</h2>
+                <h1>Filtrar  productos</h1>
+             <h2>Filtrar por...</h2></br>
              <?php 
                 $form = new FormularioFiltrar(); $form->gestiona();
             ?>

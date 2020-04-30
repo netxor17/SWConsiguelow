@@ -11,7 +11,6 @@ class Producto
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
         $query = sprintf("SELECT * FROM Productos P WHERE P.nombre = '%s'", $conn->real_escape_string($nombreProd));
-		//$query = sprintf("SELECT * FROM Productos P WHERE P.nombre LIKE '%s'", $conn->real_escape_string($nombreProd));
         $rs = $conn->query($query);
         $result = false;
         if ($rs) {
@@ -67,11 +66,7 @@ class Producto
                while( $fila = $rs->fetch_assoc()){
                 ?>
         <tr>
-<<<<<<< Updated upstream
-        <td><img height="50px" src="data:image/jpeg;base64,<?php echo base64_encode($fila['imagen']); ?>"/></td> <!-- muestro la imagen-->
-=======
         <td><img src="<?php echo $fila['imagen']; ?>" width='85' height='85'/></td>
->>>>>>> Stashed changes
         <td><?php echo $fila['nombre']; ?></td>
         <td><?php echo $fila['descripcion']; ?></td>
         <td><?php echo $fila['precio']; ?></td>
@@ -97,6 +92,66 @@ class Producto
         }
         return $result;
     }
+
+    public static function muestraProductosPorNombre($nombreProd)
+    {
+        $app = Aplicacion::getSingleton();
+        $conn = $app->conexionBd();
+        $query = sprintf("SELECT * FROM productos P WHERE p.nombre = '$nombreProd'");$conn->real_escape_string($nombreProd);
+        $rs = $conn->query($query);
+        $result = false;
+        ?>
+        <centre>
+        <table>
+        <thead>
+            <tr>
+                 <th>Imagen</th>
+                 <th>Nombre</th>
+                 <th>Descripcion</th>
+                 <th>Precio</th>
+                 <th>Unidades</th>
+                 <th>Talla</th>
+                 <th>Color</th>
+                 <th>Categoria</th>
+                 <th>Reseña</th>
+                 <th>Agotado</th>
+                 <th>Numero Estrellas</th>
+            </tr>
+        </thead>
+        <tbody>
+         <?php
+        if ($rs) {
+           // if ( $rs->num_rows >= 1) {
+               while( $fila = $rs->fetch_assoc()){
+                ?>
+        <tr>
+        <td><img src="<?php echo $fila['imagen']; ?>" width='85' height='85'/></td>
+        <td><?php echo $fila['nombre']; ?></td>
+        <td><?php echo $fila['descripcion']; ?></td>
+        <td><?php echo $fila['precio']; ?></td>
+        <td><?php echo $fila['unidadesDisponibles'];?></td>
+        <td><?php echo $fila['talla']; ?></td>
+        <td><?php echo $fila['color']; ?></td>
+        <td><?php echo $fila['categoria']; ?></td>
+        <td><?php echo $fila['reseña']; ?></td>
+        <td><?php echo $fila['agotado']; ?></td>
+        <td><?php echo $fila['numEstrellas']; ?></td>
+        </tr>
+        <?php
+            }
+        ?>
+            </tbody>
+            </table>
+            </centre>
+            <?php
+            $rs->free();
+        } else {
+            echo "Error al consultar en la BD: (" . $conn->errno . ") " . utf8_encode($conn->error);
+            exit();
+        }
+        return $result;
+    }
+
 
     public static function muestraProductosPorPrecioDesc($producto)
     {
@@ -130,12 +185,8 @@ class Producto
                while( $fila = $rs->fetch_assoc()){
                 ?>
         <tr>
-<<<<<<< Updated upstream
-        <td><img height="50px" src="data:image/jpeg;base64,<?php echo base64_encode($fila['imagen']); ?>"/></td> <!-- muestro la imagen-->
-=======
         <td><img src="<?php echo $fila['imagen']; ?>" width='85' height='85' /></td>
          <!-- <td><img height="50px" src="data:image/jpeg;base64,<?php echo base64_encode($fila['imagen']); ?>"/></td>muestro la imagen-->
->>>>>>> Stashed changes
         <td><?php echo $fila['nombre']; ?></td>
         <td><?php echo $fila['descripcion']; ?></td>
         <td><?php echo $fila['precio']; ?></td>

@@ -21,10 +21,9 @@ class FormularioFiltrar extends Form
         }
         $html = <<<EOF
         <fieldset>
-            <legend>Buscar un producto</legend>
+            <legend>Buscar un producto</legend></br>
             <p><label>Filtrar por nombre:</label> <input type="text" name="nombre" value="$nombreProd"/></p>
             <p><label>Filtrar por categoria:</label> <input type="text" name="nombre" value="$nombreCategoria"/></p>
-            <p><label>Filtrar por precio:</label> <input type="precio" name="precio" /></p>
             <button type="submit" name="search">Buscar</button>
         </fieldset>
         EOF;
@@ -39,13 +38,14 @@ class FormularioFiltrar extends Form
         $nombreProd = isset($datos['nombre']) ? $datos['nombre'] : null;
         $nombreCategoria = isset($datos['tipo']) ? $datos['tipo'] : null;
                 
-        if ( empty($nombreProd) && empty($nombreCategoria)) {
+      /*  if ( empty($nombreProd) && empty($nombreCategoria)) {
             $result[] = "Debes rellenar al menos algun campo para filtrar";
-        }
+        }*/
         
         if (count($result) === 0) {
-            $producto = Producto::buscaProducto($producto);
-            if ( ! $producto ) {
+            $producto = Producto::muestraProductosPorNombre($nombreProd);
+            //$categoria = Categoria::bucaCat($nombreCategoria);
+            if ( !$producto ) {
                 // No se da pistas a un posible atacante
                 $result[] = "No existen productos";
         }
