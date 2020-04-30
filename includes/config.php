@@ -38,6 +38,7 @@ spl_autoload_register(function ($class) {
 /**
  * Parámetros de conexión a la BD
  */
+
 define('BD_HOST', 'localhost');
 define('BD_NAME', 'consiguelowdb');
 define('BD_USER', 'consiguelowdb');

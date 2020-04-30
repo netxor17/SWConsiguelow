@@ -13,8 +13,13 @@
 </head>
 <body>
   <?php
-    require("includes/common/cabecera.php");
-  ?>
+        require("includes/common/cabecera.php");
+        ?>
+        <div id="flex-container">
+     <?php
+        require("includes/common/sidebarIzq.php");
+
+    ?>      <div id="contenido">
     
   <main>
     <h1>MIEMBROS</h1>
@@ -27,28 +32,28 @@
           <th>Aficiones</th>
         </tr>
         <tr>
-          <td> <img src="nestor.png" alt="imagen no disponible" height=150 width=100></td>
+          <td> <img src="img/nestor.png" alt="imagen no disponible" height=150 width=100></td>
           <td>Néstor </td>
           <td>Marín Gómez</td>
           <td>22</td>
           <td>Deporte, ropa, motos, el aire libre y no aburrirme</td>
         </tr>
         <tr>
-          <td ><img src="IMG_20200226_170316_757.jpg" alt="imagen no disponible" height=150 width=100></td>
+          <td ><img src="img/IMG_20200226_170316_757.jpg" alt="imagen no disponible" height=150 width=100></td>
           <td>Alejandro</td>
           <td>Tabernero Pérez</td>
           <td>23</td>
           <td>Escuchar música, leer y salir de rave</td>
         </tr>
         <tr>
-          <td ><img src="alvaro.png" alt="imagen no disponible" height=150 width=100></td>
+          <td ><img src="img/alvaro.png" alt="imagen no disponible" height=150 width=100></td>
           <td>Álvaro</td>
           <td>Abad de Donesteve</td>
           <td>26</td>
           <td>Rugby, gimnasio, cine</td>
         </tr>
         <tr>
-          <td ><img src="IMG_20200226_170316_757.jpg" alt="imagen no disponible" height=150 width=100></td>
+          <td ><img src="Fenelchat.png" alt="imagen no disponible" height=150 width=100></td>
           <td>Taiyin</td>
           <td>Shao</td>
           <td>99</td>
@@ -56,9 +61,11 @@
         </tr>
       </table> 
     </main>
-    <footer>
-
-    </footer>
+    </div>
+    <?php
+       require("includes/common/sidebarDer.php");
+       ?>
+   </div>
    
 </body>
 </html>

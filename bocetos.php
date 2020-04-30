@@ -18,6 +18,7 @@
   ?>
     </header>
     <main>
+        
         <p>Descripciones al pie de cada imagen</p>
         
         <img src="Bocetos/Boceto1.png" height=1169 width=850  alt="imagen no disponible">

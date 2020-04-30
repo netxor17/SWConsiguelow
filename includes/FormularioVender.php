@@ -46,13 +46,28 @@ class FormularioVender extends Form
             <link rel="stylesheet" href="styles/style.css">
             <legend>Producto, descripcion y precio</legend>
             <p><label>Nombre del producto:</label> <input type="text" name="nombre" value="$nombreProd"/></p>
-            <p><label>Descripcion</label> <input type="text" name="descripcion" value="$descripcion"/></p>
+            <p><label>Descripcion:</label> <input type="text" name="descripcion" value="$descripcion"/></p>
             <p><label>Precio del producto:</label> <input type="text" name="precio" value="$precio"/></p>
             <p><label>Unidades:</label> <input type="text" name="unidades" value="$unidades"/></p>
-            <p><label>Talla</label> <input type="text" name="talla" value="$talla"/></p>
+            <p><label>Talla</label>
+                <select>
+                    <option style="display:none">Elige una talla</option>
+                    <option value="XS">XS</option>
+                    <option value="S">S</option>
+                    <option value="M">M</option>
+                    <option value="L">L</option>
+                    <option value="XL">XL</option>
+                    <option value="XXL">XXL</option>
+                </select>
+            </p>
             <p><label>Color del producto:</label> <input type="text" name="color" value="$color"/></p>
-            <p><label>Categoria</label> <input type="text" name="categoria" value="$categoria"/></p>
-            <p><label>Imagen</label> <input type="file" name="imagen" value="$imagen"/></p>
+            <p><label>Categoria:</label> <select>
+                    <option style="display:none">Elige una categoria</option>
+                    <option value="comida">Comida</option>
+                    <option value="electronica">Electrónica</option>
+                    <option value="ropa">Ropa</option>
+                </select></p>
+            <p><label>Imagen:</label> <input type="file" name="imagen" value="$imagen"/></p>
             <button type="submit" name="sell">Vender</button>
         </fieldset>
         EOF;

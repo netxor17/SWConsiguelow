@@ -152,7 +152,7 @@ INSERT INTO `pedidos` (`numero`, `fecha`, `cliente`, `producto`, `idPago`, `cant
 --
 -- Table structure for table `productos`
 --
-*/
+
 CREATE TABLE `productos` (
   `id` int(10) UNSIGNED NOT NULL,
   `idVendedor` int(9) NOT NULL,

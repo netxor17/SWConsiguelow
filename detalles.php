@@ -12,12 +12,14 @@
     <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
-    <header>
-    <?php
-    require("includes/common/cabecera.php");
-  ?>
-    </header>
-    <main>
+     <?php
+        require("includes/common/cabecera.php");
+        ?>
+        <div id="flex-container">
+     <?php
+        require("includes/common/sidebarIzq.php");
+
+    ?>      <div id="contenido">
             <h1>CONSIGUELOW</h1>
             <div>
                 <h2>Introduccción</h2>
@@ -55,10 +57,12 @@
             
 
             
-    </main>
-    <footer>
-
-    </footer>
+    </div>
+    <?php
+       require("includes/common/sidebarDer.php");
+       ?>
+   </div>
+</div>
    
 </body>
 </html>
