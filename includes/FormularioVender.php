@@ -5,9 +5,10 @@
 class FormularioVender extends Form
 {
     public function __construct() {
-        parent::__construct('formVender');
+        $opciones['enctype'] = 'multipart/form-data';
+        parent::__construct('formVender', $opciones);
     }
-    
+
     protected function generaCamposFormulario($datos)
     {
         $nombreProd = '';
@@ -67,7 +68,7 @@ class FormularioVender extends Form
                     <option value="electronica">Electrónica</option>
                     <option value="ropa">Ropa</option>
                 </select></p>
-            <p><label>Imagen:</label> <input type="file" name="imagen" value="$imagen"/></p>
+            <p><label>Imagen:</label> <input type="file" name="fileToUpload" value="$imagen"/></p>
             <button type="submit" name="sell">Vender</button>
         </fieldset>
         EOF;
@@ -78,6 +79,8 @@ class FormularioVender extends Form
     protected function procesaFormulario($datos)
     {
         $result = array();
+
+        var_dump($datos);
 
         $unidades =array();
         
@@ -118,7 +121,14 @@ class FormularioVender extends Form
             $result[] = "El color no puede estar vacía.";
         }
 
-        $tallasDisponibles = $talla;
+        $imagen = isset($datos['imagen']) ? $datos['imagen'] : null;
+
+        if ( empty($imagen) ) {
+            $result[] = "La imagen no puede estar vacía.";
+        }else
+            uploadImg();
+
+       /* $tallasDisponibles = $talla;
 
         if ( empty($tallasDisponibles) ) {
             $result[] = "No hay tallas disponibles";
@@ -144,7 +154,7 @@ class FormularioVender extends Form
         
         $reseña = isset($datos['tallasDisponibles']) ? $datos['tallasDisponibles'] : null;
 
-        if ( empty($tallasDisponibles) ) {
+        if ( empty($reseña) ) {
             $result[] = "No hay tallas disponibles";
         }
         
@@ -158,13 +168,9 @@ class FormularioVender extends Form
 
         if ( empty($tallasDisponibles) ) {
             $result[] = "No hay tallas disponibles";
-        }
+        }*/
         
-        $imagen = isset($datos['talla']) ? $datos['talla'] : null;
-
-        if ( empty($talla) ) {
-            $result[] = "La imagen no puede estar vacía.";
-        }
+   
 
        if (count($result) === 0) {
             $producto = Producto::añadeProd($nombreProd, $descripcion, $precio,$unidades,$unidadesDisponibles,$tallasDisponibles,$coloresDisponibles,$talla,$color,$categoria,$reseña,$agotado,$numEstrellas,$imagen);
@@ -174,5 +180,24 @@ class FormularioVender extends Form
             }
         }
         return $result;
+    }
+
+    private static function uploadImg(){
+        $target_dir = "uploads/";
+        $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+        $uploadOk = 1;
+        $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+        // Check if image file is a actual image or fake image
+       // if(isset($_POST["submit"])) {
+            $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+            if($check !== false) {
+                echo "File is an image - " . $check["mime"] . ".";
+                $uploadOk = 1;
+            } else {
+                echo "File is not an image.";
+                $uploadOk = 0;
+            }
+        //}
+        return $uploadOk;
     }
 }

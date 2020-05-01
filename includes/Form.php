@@ -20,6 +20,11 @@ abstract class Form
      */
     private $action;
 
+/**
+ * @var string how the form-data should be encoded when submitting it to the server. añadida para poder subir imgs
+ */
+    private $enctype;
+
     /**
      * Crea un nuevo formulario.
      *
@@ -51,13 +56,17 @@ abstract class Form
     {
         $this->formId = $formId;
 
-        $opcionesPorDefecto = array( 'action' => null, );
+        $opcionesPorDefecto = array( 'action' => null, 'enctype' => null );
         $opciones = array_merge($opcionesPorDefecto, $opciones);
 
         $this->action   = $opciones['action'];
-        
+        $this->enctype = $opciones['enctype'];
         if ( !$this->action ) {
-            $this->action = htmlentities($_SERVER['PHP_SELF']);
+            $this->action = htmlentities($_SERVER['PHP_SELF']); //current executing script.form se manda a este script para procesar(action = form.php)
+        }
+
+        if ( !$this->enctype ) {
+            $this->enctype = 'application/x-www-form-urlencoded';
         }
     }
   
@@ -77,7 +86,9 @@ abstract class Form
                 exit();
             }
         }  
+  
     }
+
 
     /**
      * Genera el HTML necesario para presentar los campos del formulario.
@@ -130,14 +141,15 @@ abstract class Form
     {
 
         $html= $this->generaListaErrores($errores);
-
-        $html .= '<form method="POST" action="'.$this->action.'" id="'.$this->formId.'" >';
+        //echo $this->enctype;
+        $html .= '<form method="POST" action="'.$this->action.'" id="'.$this->formId.'" enctype="'.$this->enctype.'" >';
         $html .= '<input type="hidden" name="action" value="'.$this->formId.'" />';
 
         $html .= $this->generaCamposFormulario($datos);
         $html .= '</form>';
         return $html;
     }
+
 
     /**
      * Genera la lista de mensajes de error a incluir en el formulario.
