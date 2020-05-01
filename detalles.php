@@ -12,13 +12,15 @@
     <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
-    <header>
-    <?php
-    require("includes/common/cabecera.php");
-  ?>
-    </header>
-    <main>
-           <!-- <h1>CONSIGUELOW</h1> -->
+     <?php
+        require("includes/common/cabecera.php");
+        ?>
+        <div id="flex-container">
+     <?php
+        require("includes/common/sidebarIzq.php");
+
+    ?>      <div id="contenido">
+            <h1>CONSIGUELOW</h1>
             <div>
                 <h2>Introduccción</h2></br>
                 <p>CONSIGUELOW está destinado a la subasta y al comercio electrónico de productos a través de Internet. Es la forma más fácil de poner en contacto a compradores 
@@ -55,10 +57,12 @@
             
 
             
-    </main>
-    <footer>
-
-    </footer>
+    </div>
+    <?php
+       require("includes/common/sidebarDer.php");
+       ?>
+   </div>
+</div>
    
 </body>
 </html>
