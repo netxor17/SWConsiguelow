@@ -34,11 +34,11 @@ class Producto
         return $result;
     }
 
-    public static function muestraProductos($producto)
+    public static function muestraProductos()
     {
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
-        $query = sprintf("SELECT * FROM Productos P"); $conn->real_escape_string($producto);
+        $query = sprintf("SELECT * FROM Productos P"); //$conn->real_escape_string($producto);
         $rs = $conn->query($query);
         $result = false;
         ?>
