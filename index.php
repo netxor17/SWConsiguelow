@@ -28,9 +28,7 @@
                 <img src="img/logo.gif" alt="imagen no disponible">
             </div>
     </main>
-    <footer>
 
-    </footer>
    
 </body>
 </html>

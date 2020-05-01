@@ -5,9 +5,11 @@ use es\fdi\ucm\aw\FormularioVender;
 
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="styles/style.css" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <title>Subir un producto</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vender</title>
+    <link rel="stylesheet" href="styles/style.css">
     </head>
 
     <body>
@@ -15,12 +17,21 @@ use es\fdi\ucm\aw\FormularioVender;
             <?php
                 require("includes/common/cabecera.php");
             ?>
+            <div id="flex-container">
+     <?php
+        require("includes/common/sidebarIzq.php");
+
+    ?> 
             <div id="contenido">
-                <h1>Subir un producto</h1>
+                <h2>Subir un producto</h2>
             <?php 
                 $form = new FormularioVender(); $form->gestiona();
             ?>
             </div>
-        </div>  
+            <?php
+       require("includes/common/sidebarDer.php");
+       ?>
+        </div> 
+        </div> 
     </body>
 </html>
