@@ -35,11 +35,11 @@ class Producto
         return $result;
     }
 
-    public static function muestraProductos($producto)
+    public static function muestraProductos()
     {
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
-        $query = sprintf("SELECT * FROM Productos P"); $conn->real_escape_string($producto);
+        $query = sprintf("SELECT * FROM Productos P"); //$conn->real_escape_string($producto);
         $rs = $conn->query($query);
         $result = false;
         ?>
@@ -67,11 +67,7 @@ class Producto
                while( $fila = $rs->fetch_assoc()){
                 ?>
         <tr>
-<<<<<<< Updated upstream
-        <td><img height="50px" src="data:image/jpeg;base64,<?php echo base64_encode($fila['imagen']); ?>"/></td> <!-- muestro la imagen-->
-=======
         <td><img src="<?php echo $fila['imagen']; ?>" width='85' height='85'/></td>
->>>>>>> Stashed changes
         <td><?php echo $fila['nombre']; ?></td>
         <td><?php echo $fila['descripcion']; ?></td>
         <td><?php echo $fila['precio']; ?></td>
@@ -130,12 +126,8 @@ class Producto
                while( $fila = $rs->fetch_assoc()){
                 ?>
         <tr>
-<<<<<<< Updated upstream
-        <td><img height="50px" src="data:image/jpeg;base64,<?php echo base64_encode($fila['imagen']); ?>"/></td> <!-- muestro la imagen-->
-=======
         <td><img src="<?php echo $fila['imagen']; ?>" width='85' height='85' /></td>
          <!-- <td><img height="50px" src="data:image/jpeg;base64,<?php echo base64_encode($fila['imagen']); ?>"/></td>muestro la imagen-->
->>>>>>> Stashed changes
         <td><?php echo $fila['nombre']; ?></td>
         <td><?php echo $fila['descripcion']; ?></td>
         <td><?php echo $fila['precio']; ?></td>
