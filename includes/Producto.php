@@ -34,11 +34,11 @@ class Producto
         return $result;
     }
 
-    public static function muestraProductos()
+    public static function muestraProductos($producto)
     {
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
-        $query = sprintf("SELECT * FROM Productos P"); //$conn->real_escape_string($producto);
+        $query = sprintf("SELECT * FROM Productos P"); $conn->real_escape_string($producto);
         $rs = $conn->query($query);
         $result = false;
         ?>
@@ -93,10 +93,11 @@ class Producto
         return $result;
     }
 
-    public static function muestraProductosPorNombre($nombreProd)
+    public static function muestraProductosPorNombre()
     {
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
+        $nombreProd = $_POST['nombre'];
         $query = sprintf("SELECT * FROM productos P WHERE p.nombre = '$nombreProd'");$conn->real_escape_string($nombreProd);
         $rs = $conn->query($query);
         $result = false;
@@ -256,6 +257,8 @@ class Producto
             ,$conn->real_escape_string($producto->imagen)); // hay que insertar una imagen
         if ( $conn->query($query) ) {
             $producto->id = $conn->insert_id;
+            echo "Producto añadido con exito";
+            exit();
            // $producto->idVendedor = $conn->id;
         } else {
             echo "Error al insertar en la BD: (" . $conn->errno . ") " . utf8_encode($conn->error);

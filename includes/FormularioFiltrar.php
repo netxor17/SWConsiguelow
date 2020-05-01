@@ -22,9 +22,11 @@ class FormularioFiltrar extends Form
         $html = <<<EOF
         <fieldset>
             <legend>Buscar un producto</legend></br>
-            <p><label>Filtrar por nombre:</label> <input type="text" name="nombre" value="$nombreProd"/></p>
-            <p><label>Filtrar por categoria:</label> <input type="text" name="nombre" value="$nombreCategoria"/></p>
+            <form method="post" action="Producto.php">
+            <p><label>Filtrar por nombre:</label> <input type="text" name="nombre"/></p>
+            <p><label>Filtrar por categoria:</label> <input type="text" name="categoria"/></p>
             <button type="submit" name="search">Buscar</button>
+            </form>
         </fieldset>
         EOF;
         return $html;
@@ -44,7 +46,7 @@ class FormularioFiltrar extends Form
         
         if (count($result) === 0) {
             $producto = Producto::muestraProductosPorNombre($nombreProd);
-            //$categoria = Categoria::bucaCat($nombreCategoria);
+            //$categoria = Categoria::buscaCat($nombreCategoria);
             if ( !$producto ) {
                 // No se da pistas a un posible atacante
                 $result[] = "No existen productos";

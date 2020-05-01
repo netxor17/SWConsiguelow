@@ -20,7 +20,8 @@ use es\fdi\ucm\aw\FormularioFiltrar;
                 <h1>Filtrar  productos</h1>
              <h2>Filtrar por...</h2></br>
              <?php 
-                $form = new FormularioFiltrar(); $form->gestiona();
+                $form = new FormularioFiltrar(); 
+                $form->gestiona();
             ?>
              
             </div>

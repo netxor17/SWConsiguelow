@@ -12,12 +12,18 @@
 </head>
 
 <body>
-    <header>
+    
+   <div id="container">
+
     <?php
-    require("includes/common/cabecera.php");
-  ?>
-    </header>
-    <main>
+        require("includes/common/cabecera.php");
+        ?>
+        <div id="flex-container">
+     <?php
+        require("includes/common/sidebarIzq.php");
+
+    ?>      <div id="contenido">
+    
         <h2>Send e-mail to someone@example.com:</h2>
 
         <form action="mailto:someone@example.com" method="post" enctype="text/plain">
@@ -44,7 +50,7 @@
 
             <p>
             <input type="checkbox" name="leido" value="true">
-            <label> Marque esta casilla pra verificar que ha leído nuestros términos y condiciones del servicio</label>
+            <label> Marque esta casilla para verificar que ha leído nuestros términos y condiciones del servicio</label>
             </p>
 
             <p>        
@@ -54,7 +60,14 @@
             <textarea rows="4" cols="50">
                 
             </textarea>
+
+              <input type="submit" value="Submit">
         </form>
-    </main>
+   </div>
+   <?php
+       require("includes/common/sidebarDer.php");
+       ?>
+</div>
+</div>
 </body>
 </html>
