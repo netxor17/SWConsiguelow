@@ -6,6 +6,9 @@ namespace es\fdi\ucm\aw;
 class Aplicacion
 {
 	private static $instancia;
+
+	private $dirInstalacion;
+
 	
 	/**
 	 * Permite obtener una instancia de <code>Aplicacion</code>.
@@ -63,14 +66,39 @@ class Aplicacion
 	 * 
 	 * @param array $bdDatosConexion datos de configuración de la BD
 	 */
-	public function init($bdDatosConexion)
+	public function init($bdDatosConexion, $rutaRaizApp, $dirInstalacion)
 	{
-        if ( ! $this->inicializada ) {
-    	    $this->bdDatosConexion = $bdDatosConexion;
-    		session_start();
-    		$this->inicializada = true;
-        }
+	  $this->bdDatosConexion = $bdDatosConexion;
+  
+	  $this->rutaRaizApp = $rutaRaizApp;
+	  $tamRutaRaizApp = mb_strlen($this->rutaRaizApp);
+	  if ($tamRutaRaizApp > 0 && $this->rutaRaizApp[$tamRutaRaizApp-1] !== '/') {
+		$this->rutaRaizApp .= '/';
+	  }
+  
+	  $this->dirInstalacion = $dirInstalacion;
+	  $tamDirInstalacion = mb_strlen($this->dirInstalacion);
+	  if ($tamDirInstalacion > 0 && $this->dirInstalacion[$tamDirInstalacion-1] !== '/') {
+		$this->dirInstalacion .= '/';
+	  }
+  
+	  $this->conn = null;
+	  session_start();
 	}
+
+	public function resuelve($path = '')
+	{
+	  $rutaRaizAppLongitudPrefijo = mb_strlen($this->rutaRaizApp);
+	  if( mb_substr($path, 0, $rutaRaizAppLongitudPrefijo) === $this->rutaRaizApp ) {
+		return $path;
+	  }
+  
+	  if (mb_strlen($path) > 0 && $path[0] == '/') {
+		$path = mb_substr($path, 1);
+	  }
+	  return $this->rutaRaizApp . $path;
+	}
+  
 	
 	/**
 	 * Cierre de la aplicación.
@@ -119,5 +147,72 @@ class Aplicacion
 			}
 		}
 		return $this->conn;
+	}
+
+
+	public function doInclude($path = '')
+	{
+	  $params = array();
+	  $this->doIncludeInterna($path, $params);
+	}
+	
+	private function doIncludeInterna($path, &$params)
+	{  
+	  if (mb_strlen($path) > 0 && $path[0] == '/') {
+		$path = mb_substr($path, 1);
+	  }
+	  include($this->dirInstalacion . '/'.$path);
+	}
+	
+	public function generaVista(string $rutaVista, array &$params)
+	{
+	  $params['app'] = $this;
+	  $this->doIncludeInterna($rutaVista, $params);
+	}
+
+	public function login(Usuario $user)
+	{
+	  $_SESSION['login'] = true;
+	  $_SESSION['username'] = $user->username();
+	  $_SESSION['idUser'] = $user->id;
+	}
+  
+	public function logout()
+	{
+	  //Doble seguridad: unset + destroy
+	  unset($_SESSION['login']);
+	  unset($_SESSION['username']);
+	  unset($_SESSION['idUser']);
+  
+	  session_destroy();
+	  session_start();
+	}
+
+	public function usuarioLogueado()
+	{
+	  return ($_SESSION['login'] ?? false) === true;
+	}
+  
+	public function nombreUsuario()
+	{
+	  return $_SESSION['nombre'] ?? '';
+	}
+
+	public function tieneRol($rol, $cabeceraError=NULL, $mensajeError=NULL)
+	{
+	  $roles = $_SESSION['roles'] ?? array();
+	  if (! in_array($rol, $roles)) {
+		if ( !is_null($cabeceraError) && ! is_null($mensajeError) ) {
+		  $bloqueContenido=<<<EOF
+  <h1>$cabeceraError!</h1>
+  <p>$mensajeError.</p>
+  EOF;
+		  echo $bloqueContenido;
+		}
+  
+		return false;
+	  }
+  
+	  return true;
 	}
 }

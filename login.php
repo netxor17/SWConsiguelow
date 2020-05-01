@@ -1,8 +1,21 @@
 <?php
 require_once __DIR__.'/includes/config.php';
-require_once __DIR__.'/includes/FormularioLogin.php';
 use es\fdi\ucm\aw\FormularioLogin;
-?>
+
+$formLogin = new FormularioLogin();
+$formLogin = $formLogin->gestiona();
+
+
+$tituloPagina = 'Login';
+$contenidoPagina=<<<EOF
+  	<h1>Acceso al sistema</h1>
+    $formLogin
+EOF;
+
+$params = ['tituloPagina' => $tituloPagina, 'contenidoPagina' => $contenidoPagina];
+$app->generaVista('comun/plantilla.php', $params);
+
+/*?>
 
 
 <!DOCTYPE html>
@@ -26,4 +39,4 @@ use es\fdi\ucm\aw\FormularioLogin;
             </div>
         </div>  
     </body>
-</html>
+</html>*/

@@ -1,5 +1,19 @@
 <?php
-require_once __DIR__.'/includes/config.php'; ?>
+require_once __DIR__.'/includes/config.php';
+
+$app->logout();
+
+
+$tituloPagina = 'Logout';
+$contenidoPagina=<<<EOF
+  	<h1>Hasta pronto !</h1>
+EOF;
+
+
+$params = ['tituloPagina' => $tituloPagina, 'contenidoPagina' => $contenidoPagina];
+$app->generaVista('common/plantilla.php', $params);
+
+/*?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -23,4 +37,4 @@ require_once __DIR__.'/includes/config.php'; ?>
         ?>
             <a href="index.php">Portada</a>
 	</body>
-</html>
+</html>*/

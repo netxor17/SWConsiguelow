@@ -50,10 +50,9 @@ EOF;
                 // No se da pistas a un posible atacante
                 $result[] = "El usuario o el password no coinciden";
             } else {
-                $_SESSION['login'] = true;
-                $_SESSION['username'] = $nombreUsuario;
-                $_SESSION['idUser'] = $usuario->id;
-                //$_SESSION['esAdmin'] = strcmp($usuario->rol(), 'admin') == 0 ? true : false;
+                 // SEGURIDAD: Forzamos que se genere una nueva cookie de sesión por si la han capturado antes de hacer login
+                session_regenerate_id(true);
+                Aplicacion::getSingleton()->login($usuario);
                 $result = 'index.php';
             }
         }

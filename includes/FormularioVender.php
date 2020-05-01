@@ -1,8 +1,6 @@
 <?php namespace es\fdi\ucm\aw;
 //require_once __DIR__.'/Form.php';
 //require_once __DIR__.'/Usuario.php';
-/*aaaaaaaaaaaaaaaaaaaaaa*/
-//aaaaaaaaaaaaaaa
 
 class FormularioVender extends Form
 {

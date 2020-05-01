@@ -1,5 +1,23 @@
 <?php
 namespace es\fdi\ucm\aw;
+// Varios defines para los parámetros de configuración de acceso a la BD y la URL desde la que se sirve la aplicación
+define('BD_HOST', 'localhost');
+define('BD_NAME', 'consiguelowdb');
+define('BD_USER', 'consiguelowdb');
+define('BD_PASS', 'consiguelowdb');
+define('RAIZ_APP', __DIR__);
+define('RUTA_APP', '/SWConsiguelow/');
+define('RUTA_IMGS', RUTA_APP.'img/');
+define('RUTA_CSS', RUTA_APP.'styles/');
+//define('RUTA_JS', RUTA_APP.'js/');
+define('INSTALADA', true );
+
+if (! INSTALADA) {
+    echo "La aplicación no está configurada";
+    exit();
+  }
+
+
 /**
  * @param string $class The fully-qualified class name.
  * @return void
@@ -33,21 +51,8 @@ spl_autoload_register(function ($class) {
 });
 
 
-//require_once __DIR__.'/Aplicacion.php';
 
-/**
- * Parámetros de conexión a la BD
- */
-define('BD_HOST', 'localhost');
-define('BD_NAME', 'consiguelowdb');
-define('BD_USER', 'consiguelowdb');
-define('BD_PASS', 'consiguelowdb');
 
-/*Database de Nestor
-define('BD_HOST', 'localhost');
-define('BD_NAME', 'tiendaonline');
-define('BD_USER', 'root');
-define('BD_PASS', '');
 /**
  * Configuración del soporte de UTF-8, localización (idioma y país) y zona horaria
  */
@@ -57,7 +62,7 @@ date_default_timezone_set('Europe/Madrid');
 
 // Inicializa la aplicación
 $app = Aplicacion::getSingleton();
-$app->init(array('host'=>BD_HOST, 'bd'=>BD_NAME, 'user'=>BD_USER, 'pass'=>BD_PASS));
+$app->init(array('host'=>BD_HOST, 'bd'=>BD_NAME, 'user'=>BD_USER, 'pass'=>BD_PASS), RUTA_APP, RAIZ_APP);
 
 /**
  * @see http://php.net/manual/en/function.register-shutdown-function.php
