@@ -20,6 +20,7 @@ require_once __DIR__.'/includes/config.php';
             <div id="contenido">
                 <h1>Mostrando productos</h1>
             <?php 
+                $producto = '';
                 $producto = Producto::muestraProductos();
             ?>
             </div>

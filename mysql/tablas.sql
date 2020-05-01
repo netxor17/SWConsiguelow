@@ -152,7 +152,7 @@ INSERT INTO `pedidos` (`numero`, `fecha`, `cliente`, `producto`, `idPago`, `cant
 --
 -- Table structure for table `productos`
 --
-
+*/
 CREATE TABLE `productos` (
   `id` int(10) UNSIGNED NOT NULL,
   `idVendedor` int(9) NOT NULL,
@@ -179,7 +179,7 @@ INSERT INTO `productos` (`id`, `idVendedor`, `nombre`, `descripcion`, `precio`, 
 (1, 1, 'Cascos Sanson', 'Cascos musica', '40.99', 15, '1', '3', 'DEF', '3', 'electronica', 0, 'ninguna', 0, '');
 
 -- --------------------------------------------------------
-*/
+
 --
 -- Table structure for table `usuario`
 --
@@ -301,7 +301,7 @@ ALTER TABLE `pedidos`
   ADD KEY `idMensajero` (`idMensajero`),
   ADD KEY `idPago` (`idPago`),
   ADD KEY `cantidad` (`cantidad`);
-
+*/
 --
 -- Indexes for table `productos`
 --
@@ -313,7 +313,7 @@ ALTER TABLE `productos`
   ADD KEY `numEstrellas` (`numEstrellas`);
 
 
-
+/*
 --
 -- Indexes for table `vendedores`
 --
@@ -355,13 +355,13 @@ ALTER TABLE `pagos`
 --
 ALTER TABLE `pedidos`
   MODIFY `numero` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
+*/
 --
 -- AUTO_INCREMENT for table `productos`
 --
 ALTER TABLE `productos`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
+/*
 --
 -- AUTO_INCREMENT for table `vendedores`
 --
@@ -396,7 +396,7 @@ ALTER TABLE `pedidos`
   ADD CONSTRAINT `pedidos_ibfk_2` FOREIGN KEY (`producto`) REFERENCES `productos` (`id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `pedidos_ibfk_3` FOREIGN KEY (`idMensajero`) REFERENCES `distribuidores` (`idDistribuidor`) ON UPDATE CASCADE,
   ADD CONSTRAINT `pedidos_ibfk_4` FOREIGN KEY (`idPago`) REFERENCES `pagos` (`idPago`) ON UPDATE CASCADE;
-
+*/
 --
 -- Constraints for table `productos`
 --
@@ -404,7 +404,7 @@ ALTER TABLE `productos`
   ADD CONSTRAINT `productos_ibfk_1` FOREIGN KEY (`categoria`) REFERENCES `categoria` (`tipo`) ON UPDATE CASCADE,
   ADD CONSTRAINT `productos_ibfk_2` FOREIGN KEY (`idVendedor`) REFERENCES `vendedores` (`idVendededor`) ON UPDATE CASCADE;
 COMMIT;
-*/
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
