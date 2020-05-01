@@ -209,14 +209,7 @@ CREATE TABLE `productos` (
   `descripcion` varchar(500) NOT NULL,
   `precio` decimal(4,2) NOT NULL,
   `unidades` int(10) UNSIGNED NOT NULL,
-  `unidadesDisponibles` int(10) NOT NULL,
-  `tallasDisponibles` varchar(12) NOT NULL,
-  `coloresDisponibles` varchar(15) NOT NULL,
-  `talla` varchar(3) NOT NULL,
-  `color` varchar(12) NOT NULL,
   `categoria` varchar(20) NOT NULL,
-  `agotado` tinyint(1) NOT NULL,
-  `reseña` text DEFAULT NULL,
   `numEstrellas` tinyint(3) DEFAULT NULL,
   `imagen` longblob NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -225,5 +218,5 @@ CREATE TABLE `productos` (
 -- Volcado de datos para la tabla `productos`
 --
 
-INSERT INTO `productos` (`id`, `idVendedor`, `nombre`, `descripcion`, `precio`, `unidades`, `unidadesDisponibles`, `tallasDisponibles`, `coloresDisponibles`, `talla`, `color`, `categoria`, `agotado`, `reseña`, `numEstrellas`, `imagen`) VALUES
+INSERT INTO `productos` (`id`, `idVendedor`, `nombre`, `descripcion`, `precio`, `unidades`, `categoria`, `numEstrellas`, `imagen`) VALUES
  (1, 1, 'Cascos Sanson', 'Cascos musica', '40.99', 0, 15, '1', '3', 'DEF', 'Blanco', 'electronica', 0, 'ninguna', 0, 0x0);

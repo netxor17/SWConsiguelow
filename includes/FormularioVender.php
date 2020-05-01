@@ -47,28 +47,13 @@ class FormularioVender extends Form
             <link rel="stylesheet" href="styles/style.css">
             <legend>Producto, descripcion y precio</legend>
             <p><label>Nombre del producto:</label> <input type="text" name="nombre" value="$nombreProd"/></p>
-            <p><label>Descripcion:</label> <input type="text" name="descripcion" value="$descripcion"/></p>
+            <p><label>Descripcion</label> <input type="text" name="descripcion" value="$descripcion"/></p>
             <p><label>Precio del producto:</label> <input type="text" name="precio" value="$precio"/></p>
             <p><label>Unidades:</label> <input type="text" name="unidades" value="$unidades"/></p>
-            <p><label>Talla</label>
-                <select>
-                    <option style="display:none">Elige una talla</option>
-                    <option value="XS">XS</option>
-                    <option value="S">S</option>
-                    <option value="M">M</option>
-                    <option value="L">L</option>
-                    <option value="XL">XL</option>
-                    <option value="XXL">XXL</option>
-                </select>
-            </p>
+            <p><label>Talla</label> <input type="text" name="talla" value="$talla"/></p>
             <p><label>Color del producto:</label> <input type="text" name="color" value="$color"/></p>
-            <p><label>Categoria:</label> <select>
-                    <option style="display:none">Elige una categoria</option>
-                    <option value="comida">Comida</option>
-                    <option value="electronica">Electrónica</option>
-                    <option value="ropa">Ropa</option>
-                </select></p>
-            <p><label>Imagen:</label> <input type="file" name="fileToUpload" value="$imagen"/></p>
+            <p><label>Categoria</label> <input type="text" name="categoria" value="$categoria"/></p>
+            <p><label>Imagen</label> <input type="file" name="imagen" value="$imagen"/></p>
             <button type="submit" name="sell">Vender</button>
         </fieldset>
         EOF;
@@ -79,8 +64,6 @@ class FormularioVender extends Form
     protected function procesaFormulario($datos)
     {
         $result = array();
-
-        var_dump($datos);
 
         $unidades =array();
         
@@ -121,14 +104,7 @@ class FormularioVender extends Form
             $result[] = "El color no puede estar vacía.";
         }
 
-        $imagen = isset($datos['imagen']) ? $datos['imagen'] : null;
-
-        if ( empty($imagen) ) {
-            $result[] = "La imagen no puede estar vacía.";
-        }else
-            uploadImg();
-
-       /* $tallasDisponibles = $talla;
+        $tallasDisponibles = $talla;
 
         if ( empty($tallasDisponibles) ) {
             $result[] = "No hay tallas disponibles";
@@ -154,7 +130,7 @@ class FormularioVender extends Form
         
         $reseña = isset($datos['tallasDisponibles']) ? $datos['tallasDisponibles'] : null;
 
-        if ( empty($reseña) ) {
+        if ( empty($tallasDisponibles) ) {
             $result[] = "No hay tallas disponibles";
         }
         
@@ -168,9 +144,13 @@ class FormularioVender extends Form
 
         if ( empty($tallasDisponibles) ) {
             $result[] = "No hay tallas disponibles";
-        }*/
+        }
         
-   
+        $imagen = isset($datos['talla']) ? $datos['talla'] : null;
+
+        if ( empty($talla) ) {
+            $result[] = "La imagen no puede estar vacía.";
+        }
 
        if (count($result) === 0) {
             $producto = Producto::añadeProd($nombreProd, $descripcion, $precio,$unidades,$unidadesDisponibles,$tallasDisponibles,$coloresDisponibles,$talla,$color,$categoria,$reseña,$agotado,$numEstrellas,$imagen);
@@ -180,24 +160,5 @@ class FormularioVender extends Form
             }
         }
         return $result;
-    }
-
-    private static function uploadImg(){
-        $target_dir = "uploads/";
-        $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-        $uploadOk = 1;
-        $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-        // Check if image file is a actual image or fake image
-       // if(isset($_POST["submit"])) {
-            $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-            if($check !== false) {
-                echo "File is an image - " . $check["mime"] . ".";
-                $uploadOk = 1;
-            } else {
-                echo "File is not an image.";
-                $uploadOk = 0;
-            }
-        //}
-        return $uploadOk;
     }
 }
