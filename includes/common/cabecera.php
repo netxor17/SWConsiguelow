@@ -1,6 +1,6 @@
 <header>
     <nav>
-        <ul>
+    <ul class="menu">
             <li><a href="index.php?">Inicio</a></li>
             <li><a href="detalles.php">Detalles</a></li>
             <li><a href="bocetos.php">Bocetos</a></li>

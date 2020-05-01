@@ -12,12 +12,16 @@
 </head>
 
 <body>
-    <header>
+   <div id="container">
+
     <?php
-    require("includes/common/cabecera.php");
-  ?>
-    </header>
-    <main>
+        require("includes/common/cabecera.php");
+        ?>
+        <div id="flex-container">
+     <?php
+        require("includes/common/sidebarIzq.php");
+
+    ?>      <div id="contenido">
         <h2>Send e-mail to someone@example.com:</h2>
 
         <form action="mailto:someone@example.com" method="post" enctype="text/plain">
@@ -55,6 +59,11 @@
                 
             </textarea>
         </form>
-    </main>
+    </div>
+    <?php
+       require("includes/common/sidebarDer.php");
+       ?>
+   </div>
+</div>
 </body>
 </html>
