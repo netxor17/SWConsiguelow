@@ -15,12 +15,21 @@ use es\fdi\ucm\aw\FormularioVender;
             <?php
                 require("includes/common/cabecera.php");
             ?>
+            <div id="flex-container">
+     <?php
+        require("includes/common/sidebarIzq.php");
+
+    ?> 
             <div id="contenido">
-                <h1>Subir un producto</h1>
+                <h2>Subir un producto</h2>
             <?php 
                 $form = new FormularioVender(); $form->gestiona();
             ?>
             </div>
-        </div>  
+            <?php
+       require("includes/common/sidebarDer.php");
+       ?>
+        </div> 
+        </div> 
     </body>
 </html>
