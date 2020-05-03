@@ -1,0 +1,191 @@
+@import url(https://fonts.googleapis.com/css?family=Orbitron);
+@import url(https://fonts.googleapis.com/css?family=Monoton);
+@import url(https://fonts.googleapis.com/css?family=Share+Tech+Mono);
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #467599;
+    font-family: "Share Tech Mono", arial;
+
+
+}
+#flex-container{    
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+    float: none;
+}
+#cabecera {
+   
+    margin-top: 1rem;
+}
+
+nav ul {
+    list-style: none;
+    display: inline-block;
+}
+
+h1{
+    text-align: center;
+    margin-bottom: 1rem;
+    font-family: "Monoton", arial;
+}
+
+.logo {
+    padding-top: 0px;
+    text-align: center;
+
+}
+nav{
+  font-family: "Orbitron", arial;
+}
+nav li a{
+    display: inline-block;
+    padding: 14px 30px;
+    text-decoration: none;
+}
+
+a:visited{
+    color: aqua;
+}
+a:link{
+    color: #54457F;
+    
+}
+nav li a:hover{
+    background-color: #152749;
+}
+
+.menu{
+
+}
+.menu li{
+  display: inline-block;
+
+}
+
+.profile{
+  float: right;
+}
+.profile li{
+  display: inline-block;
+}
+
+th{
+  text-align: left;
+}
+table, th, td {
+    border: none;
+    border-collapse: collapse;
+  }
+  th, td{
+    padding: 15px;
+  }
+
+  td:hover {background-color: #5583A3;}
+
+  #sidebar-left {
+    padding: 10px;
+    float: left;
+    width: 50%;
+    height: 100%;
+    min-height: 670px;
+    height: 100%;
+    background-color: #9ED8DB;
+    margin: auto;
+}
+
+#sidebar-left a, #sidebar-left a:visited {
+    color: red;
+    font-weight: bold;
+    text-decoration: none;
+} 
+
+#sidebar-left a:hover {
+    color: red;
+    text-decoration: underline;
+} 
+
+
+#sidebar-right {
+    float: left;
+    width: 50%;
+    height: 100%;
+    min-height: 670px;
+    height: 100%;
+    background-color: #9ED8DB;
+    margin: auto;
+}
+
+#contenido {
+    padding: 10px;
+    float: left;
+    min-height: 670px;
+    /*max-height: 670px;*/
+    height: 100%;
+    width: 100%;
+    background-color: #D3F8E2;
+
+}
+#titulo{
+    width: 100%;
+}
+input[type=text], select , textarea, input[type=password]{
+  width: 100%;
+  padding: 12px 20px;
+  margin: 12px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 100%;
+  background-color: #176087;
+  color: white;
+  padding: 14px 20px;
+  margin: 12px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+input[type=submit]:hover {
+  background-color: #124E74;
+}
+
+.tabla-productos{
+  padding: 10px;
+  width: 100%;
+  border: none;
+}
+fieldset{
+  border: none;
+}
+fieldset button{
+  width: 100%;
+  background-color: #176087;
+  color: white;
+  padding: 14px 20px;
+  margin: 12px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 18px;
+
+}
+
+fieldset button:hover{
+  background-color: #124E74;
+}
+
+td img{
+  max-height: 100px;
+}
