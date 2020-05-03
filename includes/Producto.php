@@ -10,7 +10,7 @@ class Producto
     {
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
-        $query = sprintf("SELECT * FROM Productos P WHERE P.nombre = '%s'", $conn->real_escape_string($nombreProd));
+        $query = sprintf("SELECT * FROM productos P WHERE P.nombre = '%s'", $conn->real_escape_string($nombreProd));
         $rs = $conn->query($query);
         $result = false;
         if ($rs) {
@@ -38,7 +38,7 @@ class Producto
     {
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
-        $query = sprintf("SELECT * FROM Productos P"); //$conn->real_escape_string($producto);
+        $query = sprintf("SELECT * FROM productos P"); //$conn->real_escape_string($producto);
         $rs = $conn->query($query);
         $result = false;
         ?>
@@ -158,7 +158,7 @@ class Producto
     {
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
-        $query = sprintf("SELECT * FROM Productos P ORDER BY P.precio DESC"); $conn->real_escape_string($producto);
+        $query = sprintf("SELECT * FROM productos P ORDER BY P.precio DESC"); $conn->real_escape_string($producto);
         $rs = $conn->query($query);
         $result = false;
         ?>
@@ -271,7 +271,7 @@ class Producto
     {
         $app = Aplicacion::getSingleton();
         $conn = $app->conexionBd();
-        $query=sprintf("UPDATE Productos P SET nombre = '%s', descripcion='%s', precio='%f', unidades='%d, unidadesDisponibles ='%d', tallasDisponibles ='%s', coloresDisponibles ='%s', talla ='%s', color ='%s', categoria ='%s', reseña ='%s', agotado ='%b', numEstrellas ='%d', imagen ='%s' WHERE P.id=%i"
+        $query=sprintf("UPDATE productos P SET nombre = '%s', descripcion='%s', precio='%f', unidades='%d, unidadesDisponibles ='%d', tallasDisponibles ='%s', coloresDisponibles ='%s', talla ='%s', color ='%s', categoria ='%s', reseña ='%s', agotado ='%b', numEstrellas ='%d', imagen ='%s' WHERE P.id=%i"
             , $conn->real_escape_string($producto->nombre)
             , $conn->real_escape_string($producto->descripcion)
             , $conn->real_escape_string($producto->precio)

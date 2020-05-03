@@ -74,7 +74,7 @@ SET time_zone = "+00:00";
 --
 -- Estructura de tabla para la tabla `carrito`
 --
-
+/*
 CREATE TABLE `carrito` (
   `idCarrito` int(10) NOT NULL,
   `idProducto` int(10) UNSIGNED NOT NULL,
@@ -197,7 +197,7 @@ INSERT INTO `pedidos` (`numero`, `fecha`, `cliente`, `producto`, `nombreProducto
 (1, '2020-03-12', '50258495', 1, '', 1, 1, 1, 0);
 
 -- --------------------------------------------------------
-
+*/
 --
 -- Estructura de tabla para la tabla `productos`
 --
