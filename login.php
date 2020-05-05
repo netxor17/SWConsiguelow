@@ -14,22 +14,16 @@ use es\fdi\ucm\aw\FormularioLogin;
     </head>
 
     <body>
-         <?php
-        require("includes/common/cabecera.php");
-        ?>
-        <div id="flex-container">
-     <?php
-        require("includes/common/sidebarIzq.php");
-
-    ?>      <div id="contenido">
+        <div id="contenedor">
+            <?php
+                require("includes/common/cabecera.php");
+            ?>
+            <div id="contenido">
                 <h1>Acceso al sistema</h1>
             <?php 
                 $form = new FormularioLogin(); $form->gestiona();
             ?>
             </div>
-         <?php
-       require("includes/common/sidebarDer.php");
-       ?>
-   </div>  
+        </div>  
     </body>
 </html>
