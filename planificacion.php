@@ -12,12 +12,16 @@
     <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
-    <header>
+  <div id="contenedor">
     <?php
-    require("includes/common/cabecera.php");
-  ?>
-    </header>
-    <main>
+        require("includes/common/cabecera.php");
+        ?>
+        <div id="flex-container">
+     <?php
+        require("includes/common/sidebarIzq.php");
+
+    ?>      <div id="contenido">
+   
         <h2>Tabla de usuarios y tareas</h2>
         <table style="width:100%">
           
@@ -111,10 +115,11 @@
               </td>
           </tr>
         </table>
-    </main>
-    <footer>
-
-    </footer>
-   
+    </div>
+    <?php
+       require("includes/common/sidebarDer.php");
+       ?>
+   </div>
+ </div>
 </body>
 </html>

@@ -104,7 +104,7 @@ EOF;
 
         $email = isset($datos['email']) ? $datos['email'] : null;
         if ( empty($email) ) {
-            $result[] = "El campo tarjeta de Crédito es obligatorio";
+            $result[] = "El campo email es obligatorio";
         }
         
         $telefono = isset($datos['telefono']) ? $datos['telefono'] : null;
