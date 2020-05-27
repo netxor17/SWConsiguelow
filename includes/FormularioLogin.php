@@ -44,9 +44,6 @@ EOF;
         }
         
         if (count($result) === 0) {
-            //echo $nombreUsuario;
-            //echo "<br>";
-            //echo $password;
             $usuario = Usuario::login($nombreUsuario, $password);
             if ( ! $usuario ) {
                 // No se da pistas a un posible atacante

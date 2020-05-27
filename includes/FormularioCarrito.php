@@ -1,10 +1,10 @@
 <?php
 namespace es\fdi\ucm\aw;
 
-class FormularioFiltrar extends Form
+class FormularioCarrito extends Form
 {
     public function __construct() {
-        parent::__construct('formFiltrar');
+        parent::__construct('formCarrito');
     }
     
     protected function generaCamposFormulario($datos)
